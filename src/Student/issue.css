@@ -1,0 +1,33 @@
+.issue_box {
+    height: 50px;
+    background-color: rgb(234, 122, 38);
+    color: white;
+}
+
+.inner_box {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.inner_text {
+    font-size: 16px;
+}
+
+.issue_btn {
+    background-color: white;
+    color: tomato;
+    padding: 2px;
+    padding: 1px;
+    box-shadow: 1px 1px 5px 1px rgb(0 0 0 / 20%);
+    margin-left: 20px;
+    padding: 3px;
+    border-radius: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+}
+
+h4 {
+    font-weight: 500;
+}

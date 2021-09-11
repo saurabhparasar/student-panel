@@ -1,0 +1,163 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(241,241,241,1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.navbar{
+  background:  linear-gradient(258.77deg, #2F387F -2.12%, #1C74B3 97.09%);
+  border: none;
+  /* border-bottom: 1.5px solid lightgrey; */
+  border-radius: 0px;
+  margin: 0px;
+  /* padding: 0px; */
+}
+.navbar_custom{
+  padding: 10px;
+  background-color: white;
+}
+.navbar #img1{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.navbar li a{
+  color: black;
+margin: 10px 20px 0px 20px;
+}
+.navbar #myNavbar #icon1{
+  font-size: 20px;
+  margin: 22px 15px 10px 20px;
+}
+.navbar #myNavbar a{
+  background: none;
+}
+.navbar #btn1{
+  background: linear-gradient(246.8deg, #C4C4C4 -5.42%, #293E80 -5.41%, #09AEE5 96.08%);
+  border: none;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.navbar #btn2{
+  border: none;
+  background: lightgrey;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100px;
+  font-weight: bold;
+}
+.navbar span{
+  background: white;
+}
+ .navbar-toggle span{
+  background: white;
+}
+.navbar li a{
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 116.2%;
+  text-transform: capitalize;
+  color: #FFFFFF;
+outline:none;
+}
+.navbar li a:hover{
+  text-decoration: none;
+}
+.box1{
+  /* padding: 10px 12px 0px 20px; */
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px lightgrey;
+  margin-bottom: 13px;
+  border: 1px solid lightgrey;
+  /* border-radius: 5px; */
+  padding: 10px;
+  min-height: 250px;
+  /* background:linear-gradient(90.18deg, #9EC8FF 2.43%, #00AEEF 99.83%); */
+  margin:20px;
+  text-align:center;
+}
+.box1:hover{
+background: linear-gradient(246.8deg, #C4C4C4 -5.42%, #293E80 -5.41%, #09AEE5 30.08%);
+/* cursor: pointer; */
+/* opacity: 0.7; */
+}
+#btn3{
+  background: linear-gradient(246.8deg, #C4C4C4 -5.42%, #293E80 -5.41%, #09AEE5 96.08%);
+border-radius: 48px;
+border: none;
+padding: 5px 10px 5px 10px;
+color:white;
+outline: none;
+/* width:110px; */
+}
+.box1:hover #btn3{
+  background: #FFFFFF;
+  border-radius: 48px;
+  /* font-family: Montserrat; */
+font-style: normal;
+font-weight: 600;
+/* font-size: 15px; */
+color: #0061B5;
+}
+.paymentbox{
+width:55%;
+padding: 50px;
+ border:1px solid lightgrey;
+ border-radius:10px;
+ }
+
+@media(max-width:1200px){
+  .navbar li a{
+  margin: 10px 4px 0px 4px;
+  }
+}
+@media (max-width: 768px) {
+  .navbar #img1{
+    margin: 5px 0px 0px 10px;
+  }
+  .paymentbox{
+  width:70%;
+  }
+}
+@media (max-width: 600px) {
+
+  .paymentbox{
+  width:80%;
+  }
+}
+@media (max-width: 500px) {
+
+  .paymentbox{
+  width:100%;
+  }
+}
+#feeportal #bigcard{
+  display: block;
+  }
+#feeportal #smallcard{
+  display: none;
+}
+@media(max-width:991px){
+  #feeportal #bigcard{
+  display: none;
+  }
+  #feeportal #smallcard{
+    display: block;
+  }
+}

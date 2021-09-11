@@ -1,0 +1,104 @@
+.login {
+  height: 100vh;
+  background-color: #E87A26;
+  ;
+}
+
+.box {
+  background: white;
+  margin: 130px 0px 0px 0px;
+  padding: 30px 10px 30px 10px;
+  border-radius: 10px;
+  /* width: 70%auto; */
+  max-width: 800px;
+  /* text-align: left; */
+}
+
+@media (max-width:786px) {
+  .box {
+    margin-top: 80px;
+  }
+}
+
+.box #img1 {
+  margin-top: 80px;
+}
+
+.box #formcon {
+  text-align: left;
+  /* background: red; */
+}
+
+.box #text1 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 34px;
+  color: #1C3687;
+}
+
+.box #text2 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: #BEC5D3;
+}
+
+.box form {
+  margin-top: 30px;
+}
+
+.box input[type="email"] {
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  /* width: 80%; */
+}
+
+.box input[type="password"] {
+  border: none;
+  border-bottom: 1px solid lightgrey;
+}
+
+.box .inline label {
+  display: inline-block;
+}
+
+.box #text3 {
+  display: inline-block;
+  float: right;
+  margin-right: 90px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  cursor: pointer;
+  font-weight: bold;
+  color: #0061B5;
+}
+
+.box #error {
+  display: inline-block;
+  float: left;
+  margin-left: 90px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+
+  font-weight: bold;
+  color: #b50000;
+}
+
+.box button {
+  margin-top: 30px;
+  text-align: center;
+  width: 50%;
+
+}

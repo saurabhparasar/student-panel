@@ -1,0 +1,260 @@
+.row1{
+    border-bottom: 2px solid #C0C0C0;
+}
+.bookheading{
+
+    padding-left: 3%;
+    padding-bottom: 0%;
+    font-family: Montserrat;
+    font-weight: bolder;
+    font-size: 20px;
+    line-height: 20px;
+    color: #1D1D1D;
+
+}
+.upload{
+    width: 90%;
+    height: 163.95px;
+   }
+
+.tableheading{
+    display: flex;
+    justify-content: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 18px;
+    line-height: 300%;
+    border-bottom: 2px solid lightgrey;
+}
+
+.unorderlist{
+    margin-top: 20px;
+    content: "\2022";
+color: #EB7926;
+}
+.fileinput{
+    padding-top:2%;
+    padding-bottom: 5%;
+
+}
+.con{
+   padding-left: 8%;
+}
+.cropimage{
+    padding-left: 8%;
+    padding-top: 4%;
+}
+.cropbutton{
+    padding-top: 3%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3%;
+}
+.cropbtn{
+    display: flex;
+    justify-content: center;
+}
+.row1{
+    border-bottom: 2px solid #C0C0C0;
+
+}
+.quesheading{
+    margin-top: 3%;
+    padding-left: 3%;
+    padding-bottom: 0%;
+    font-family: Montserrat;
+    font-weight: bolder;
+    font-size: 20px;
+    line-height: 20px;
+    color: #1D1D1D;
+
+}
+.upload{
+width: 90%;
+height: 163.95px;
+background: linear-gradient(90.18deg, #FEB683 2.43%, #FF8993 99.83%);}
+
+.whatsappinput{
+    padding-left: 5%;
+    padding-top:2%;
+    padding-bottom: 5%;
+
+}
+
+.Whatsapp{
+    width: 90%;
+    height: 163.95px;
+    background: linear-gradient(246.8deg, #C4C4C4 -5.42%, #293E80 -5.41%, #09AEE5 96.08%);
+
+}
+.whatsappbody{
+    padding-top: 20px;
+}
+
+.textinput{
+    vertical-align: middle;
+    align-items: center;
+    padding-top: 7%;
+    padding-bottom: 5%;
+
+
+}
+
+.form-input{
+    width: 90%;
+}
+
+.inputbtn{
+   padding-left: 35%;
+   padding-top:3%;
+}
+
+.custombtn{
+   background:linear-gradient(246.8deg, #C4C4C4 -5.42%, #293E80 -5.41%, #09AEE5 96.08%);
+}
+
+.customcolor{
+    position: relative;
+    color:#ffffff;
+    text-align: center;
+    /* margin-left: 37px; */
+    /* display: inline-block; */
+    /* z-index: -1; */
+}
+.customColor{
+    color:#ffffff;
+    display: flex;
+    justify-content: center;
+    /* margin-left: 37px; */
+    /* display: inline-block; */
+
+}
+.circle1 {
+    display: inline-block;
+    background: white;
+    opacity: 0.14;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    margin-right: -70px;
+    margin-top: -30px;
+    float: right;
+}
+.circle2 {
+    display: inline-block;
+    background:white;
+    opacity: 0.14;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    float: right;
+    margin-right: -50px;
+    margin-top: -5px;
+}
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 50px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: #09f;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}
+
+#doubtform #searchbox::placeholder{
+  color:white;
+  font-size: 15px;
+  font-family: Montserrat;
+}
+#doubtform input[type=text]{
+    color: white;
+    font-size: 15px;
+    font-family: Montserrat;
+
+}
+#doubtform #button1{
+  border:none;
+   background:#1C3687;
+    padding:8px 20px 8px 20px;
+    margin-left:20px;
+     border-radius:9px;
+   margin-bottom:20px;
+   width: 100%;
+   text-align: left;
+}
+#doubtform #button1 p{
+font-family:Montserrat;
+font-size:16px; color:#FFFFFF;
+ float:right;
+margin:3px 0px 0px 15px;
+}
+@media(max-width:992px){
+  #doubtform #img1{
+    display: none;
+  }
+  #doubtform #button1{
+  margin-left: 0px;
+  width:100%;
+  }
+  #doubtform #button1 p{
+  float: left;
+  }
+}

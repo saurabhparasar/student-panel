@@ -1,0 +1,187 @@
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(241,241,241,1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+        background: #555;
+}
+.addstudent #sidenav{
+  width: 25%;
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+  padding: 0px;
+  padding-bottom: 50px;
+  margin: 0px;
+  background:#232E83;
+}
+.addstudent #img1{
+  margin-left: 20px;
+  margin-top: 20px;
+}
+@media(max-width:865px)
+{
+  .addstudent #img1{
+  margin-left:0px;
+}
+}
+.addstudent #gap1{
+  margin-top: 40px;
+}
+.addstudent .items{
+  padding: 11px;
+  margin: 20px 0px 20px 0px;
+}
+.addstudent #text1{
+  position: relative;
+  font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 15px;
+line-height: 18px;
+color: #FFFFFF;
+display: inline-block;
+margin: 4px 0px 0px 30px;
+}
+.addstudent #img2{
+  position: absolute;
+  display: inline-block;
+}
+.addstudent #gap2,.addstudent #gap3{
+  margin: 0px;
+  padding: 0px;
+}
+.addstudent nav{
+  box-shadow: 1px 2px 5px lightgrey;
+  width: 104%;
+}
+.addstudent .title{
+  display: inline-block;
+}
+.addstudent .icons{
+  display: inline-block;
+  float: right;
+  padding: 2px 10px 0px 0px;
+}
+.addstudent i{
+font-size: 25px;
+margin: 0px 10px 0px 0px;
+}
+.addstudent #img3{
+margin-top: 5px;
+}
+.addstudent #text2{
+  padding: 13px 10px 5px 10px;
+  font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+text-transform: capitalize;
+color: #1D1D1D;
+font-weight: bold;
+}
+.addstudent .selected .items{
+opacity: 0.5;
+color: black;
+background: #0061B5;
+padding: 11px;
+}
+.addstudent .selected .items1{
+  opacity: 0.5;
+  color: black;
+  background: #0061B5;
+  padding: 3px;
+  }
+.addstudent .selected #pad{
+  background: white;
+  padding: 12px 2px 12px 2px;
+  height: 100%;
+  float: right;
+}
+.addstudent #gap3{
+  display: none;
+}
+.addstudent #img4{
+  margin: 10px 0px 0 10px;
+}
+.addstudent #navbartoggle {
+  border: none;
+}
+.addstudent #navbartoggle span{
+  background: white;
+}
+
+.addstudent .navbar i{
+  float:right;
+  margin-top: 14px;
+  margin-right: 20px;
+  font-size: 22px;
+}
+.addstudent .navbar #username{
+  display: inline-block;
+  font-size: 20px;
+  margin-left: 50px;
+  margin-top: 3px;
+  color: white;
+}
+.addstudent .navbar #img3{
+  margin: 0px 10px 0px 10px;
+  position: absolute;
+}
+.addstudent .navbar a:hover{
+  opacity: 0.7;
+  background: skyblue;
+}
+.addstudent .navbar a #text3{
+  position: relative;
+  font-family: Montserrat;
+font-style: normal;
+font-weight: normal;
+font-size: 15px;
+line-height: 18px;
+/* color: #FFFFFF; */
+display: inline-block;
+margin: 4px 0px 0px 30px;
+color:white;
+
+}
+@media(max-width:991px){
+  .navbar{
+    border:none;
+    margin: 0px;
+  }
+  .addstudent #sidenav{
+    display: none;
+  }
+  .addstudent nav{
+    width: 100%;
+  }
+  .addstudent #gap2{
+    display: none;
+  }
+  .addstudent #gap3{
+    display: block;
+  }
+}
+#nav{
+  box-shadow: 1px 2px 5px lightgrey;
+}
+@media(max-width:991px){
+
+  #nav{
+      display: none;
+  }
+}

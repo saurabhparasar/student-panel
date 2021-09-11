@@ -1,0 +1,17 @@
+
+.navbar{
+    margin-top: 17px;
+    padding-bottom: 5px;
+    border-bottom: 1.5px solid lightgrey;
+  }
+  .navbar li a{
+    color: black;
+  margin: 0px 20px 0px 20px;
+  }
+  .navbar #myNavbar #icon1{
+    font-size: 20px;
+    margin: 15px 15px 10px 20px;
+  }
+  .navbar #myNavbar a{
+    background: none;
+  }
