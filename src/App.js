@@ -71,6 +71,10 @@ import Password from './ForgotPassword/Password'
 import Feesummary from './Student/Feesummary';
 import jeepage from './landing/Jeepage';
 import Myschedule from './Student/Myschedule';
+import AssignmentsList_student from '../src/Student/assignments/AssignmentsList_Student'
+import AssignmetsSubjects from '../src/Student/assignments/AssignmentsSubjects'
+import AssignmentsChapters from '../src/Student/assignments/AssignmentsChapters'
+
 class App extends Component {
   render() {
     return (
@@ -142,6 +146,9 @@ class App extends Component {
             <ProtectedRoute exact path="/student/feemodule/payment" component={PaymentStudent} value="Student" />
             <ProtectedRoute exact path="/student/feemodule/paymentstatus/:status" component={PaymentStatusStudent} value="Student" />
             <ProtectedRoute exact path="/student/Myschedule" component={Myschedule} value="Student" />
+            <ProtectedRoute exact path="/student/assignmentslist" component={AssignmentsList_student} value="Student" />
+            <ProtectedRoute exact path="/student/assignmentssubjects" component={AssignmetsSubjects} value="Student" />
+            <ProtectedRoute exact path="/student/assignmentschapters" component={AssignmentsChapters} value="Student" />
             <Route exact path='*' component={ErrorPage} />
           </Switch>
         </BrowserRouter>

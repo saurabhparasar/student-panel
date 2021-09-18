@@ -36,7 +36,8 @@ class Student extends Component {
       student_details: '',
       upcoming_tests: [],
       upcoming_quiz: [],
-      classid: ''
+      classid: '',
+      school_id: ''
     }
 
   }
@@ -113,13 +114,14 @@ class Student extends Component {
     let subject_name = [];
     axios.get(Config.SERVER_URL + 'users/get-student-details/?username=' + this.state.student, requestOptions1)
       .then(response => {
-        console.log(response.data.student_data)
+        // console.log(response.data.student_data)
         // console.log(response.data.student_data.section_assoc.id);
         student_subjects = response.data.student_subjects;
         this.setState({
           student_details: response.data.student_data,
           sectionid: response.data.student_data.section_assoc.id,
-          classid: response.data.student_data.section_assocclass_assoc
+          classid: response.data.student_data.section_assoc.class_assoc,
+          school_id: response.data.student_data.school_assoc.id
         })
         student_subjects.map((item) => {
           if (item.subject_assoc.is_main_subject == true) {
@@ -236,10 +238,10 @@ class Student extends Component {
     })
   }
   jeeadvance = () => {
-    window.open(`https://class.zinedu.com/WEBStudent/JEEAdvancePageAccess?StudentReferenceId=${this.state.student_details.id}`)
+    window.open(`https://class.zinedu.com/WEBStudent/JEEAdvancePageAccess?StudentReferenceId=${this.state.student_details.id}&ClassId=${this.state.classid}&SectionId=${this.state.sectionid}&SchoolId=${this.state.school_id}`)
   }
   jeeadvance2 = () => {
-    window.open(`https://class.zinedu.com/WEBStudent/JEEAdvancePageAccess?StudentReferenceId=${this.state.student_details.id}&ClassId=${this.state.classid}&SectionId=${this.state.sectionid}`)
+    window.open(`https://class.zinedu.com/WEBStudent/JEEAdvancePageAccess?StudentReferenceId=${this.state.student_details.id}&ClassId=${this.state.classid}&SectionId=${this.state.sectionid}&SchoolId=${this.state.school_id}`)
   }
   render() {
     if (this.state.class_subject.length > 0) {
@@ -575,7 +577,7 @@ class Student extends Component {
                 </div>
 
                 <br /><br />
-                <Link to={{ pathname: '/student/objectivetest', state: { exam_type: 2 } }}>
+                <Link to={{ pathname: '/student/assignmentssubjects', state: { exam_type: 2 } }}>
                   <div class={Styles.bigbox}>
                     <div class="row">
                       <div class="col-xs-12">
@@ -680,7 +682,104 @@ class Student extends Component {
                             <p style={text1}>TEST</p>
                           </div>
                           <div>
-                            <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button>
+                            {(() => {
+                              switch (this.state.sectionid) {
+                                case 303:
+                                  return <button onClick={this.jeeadvance} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                case 393:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 390:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 371:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 370:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 369:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 359:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 358:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 357:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 327:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 319:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 318:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 317:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 316:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 315:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 308:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 306:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 305:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 301:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 241:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 240:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 239:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 238:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 237:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 224:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 223:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 222:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 221:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 211:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 209:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                case 202:
+                                  return <div><button onClick={this.jeeadvance2} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '500px', marginTop: '2px', marginRight: '20px' }}>Click here for jee advanced test series</button>
+                                    <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button></div>
+                                default:
+                                  return <button onClick={this.ViewAll} class="btn" style={{ outline: 'none', background: '#EB7926', borderRadius: '47px', fontWeight: 'bold', color: 'white', fontSize: '20px', fontWeight: 'bold', marginTop: '30px', width: '200px', marginTop: '2px', marginRight: '20px' }}>VIEW ALL</button>;
+                              }
+                            })()}
                           </div>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -774,9 +873,9 @@ class Student extends Component {
                 <br />
                 <div class="row">
                   <div class="col-sm-6">
-                    <div class={Styles.smallbox} data-toggle="modal" data-target="#exampleModal1">
+                    <div class={Styles.smallbox} onClick={this.ViewAll}>
                       <i style={icon} class="fas fa-clipboard-check"></i>
-                      <p style={text3}>RESULTS</p>
+                      <p style={text3}>My Test</p>
                     </div>
                   </div>
                   <div class="col-sm-6">

@@ -9,7 +9,6 @@ class Objectiveexam extends Component {
   constructor() {
     super();
     let data = localStorage.getItem("userdetail");
-
     data = JSON.parse(data);
     let student = data.username;
     this.state = {
@@ -65,7 +64,6 @@ class Objectiveexam extends Component {
         let time_over_hours = Number(time_over.split(':')[0]);
         let time_over_minutes = Number(time_over.split(':')[1]);
         let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));
-
         let total_time = this.props.location.state.examdetails.exam_duration;
         let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
         let c_seconds = this.convertToSeconds(0, total_time, 0);
@@ -80,6 +78,7 @@ class Objectiveexam extends Component {
           time_over: time_over,
         });
         this.countDown();
+        console.log('Timmer')
       })
       .catch(error => {
         console.log('error', error);
@@ -98,10 +97,10 @@ class Objectiveexam extends Component {
     else {
       console.log(this.props);
       let time_over = this.props.location.state.questions.time_over;
+      console.log(time_over)
       let time_over_hours = Number(time_over.split(':')[0]);
       let time_over_minutes = Number(time_over.split(':')[1]);
       let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));
-
       let total_time = this.props.location.state.examdetails.exam_duration;
       let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
       let c_seconds = this.convertToSeconds(0, total_time, 0);
@@ -191,7 +190,33 @@ class Objectiveexam extends Component {
     let minutes = this.state.minutes;
     let seconds = this.state.seconds;
     let actual_time = this.convertToSeconds(0, minutes, seconds);
-    // console.log(actual_time);
+    if (actual_time === 2) {
+      clearInterval(this.timer)
+      var formdata = new FormData();
+      formdata.append("exam", this.state.examid);
+      formdata.append("student", this.state.student);
+      var requestOptions = {
+        method: 'POST',
+        body: formdata,
+        redirect: 'follow',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Token ' + this.state.token,
+        },
+      };
+      fetch(Config.SERVER_URL + 'student/submit-objective-exam/', requestOptions)
+        .then(response => response.json())
+        .then(json => {
+          console.log(json);
+          this.props.history.push({
+            pathname: '/student/objectiveexamcomplete',
+            state: { exam_complete: json },
+          })
+        })
+        .catch(error => {
+          console.log('error', error);
+        })
+    }
     if (actual_time >= 0) {
 
       // seconds change
@@ -202,7 +227,7 @@ class Objectiveexam extends Component {
         this.setState({ minutes: minutes - 1 });
       }
     }
-    else if (actual_time < 0) {
+    else if (actual_time <= 0) {
       if (this.state.exam_details.timer_status == 1) {
         var formdata = new FormData();
         formdata.append("exam", this.state.examid);
@@ -461,7 +486,6 @@ class Objectiveexam extends Component {
     });
   }
   submitExam = () => {
-
     var formdata = new FormData();
     formdata.append("exam", this.state.examid);
     formdata.append("student", this.state.student);
@@ -738,10 +762,6 @@ find somthing wrong here report the question here */}
               </div>
             </div>
           </div>
-
-
-
-
           <br />
         </div>
       </div>
