@@ -161,10 +161,10 @@ export class Feesummary extends Component {
                         {this.state.student_installment_plan.map((item, index) => (
                             <tr style={{
                                 padding: '10px'
-                            }}>gg
+                            }}>
                                 <td style={{ padding: '10px' }}>{index + 1}</td>
                                 <td>{item.amount_payable}</td>
-                                <td>{dateFormat(item.validity_end_date, 'dddd, mmmm d, yyyy')}</td>
+                                <td>{dateFormat(item.item.installment_date, 'dddd, mmmm d, yyyy')}</td>
                                 <td>{item.status}</td>
                                 <td>
                                     {item.status === 'Unpaid' ?

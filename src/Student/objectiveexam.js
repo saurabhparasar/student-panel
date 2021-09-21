@@ -675,12 +675,6 @@ class Objectiveexam extends Component {
                       <div class="modal-body">
                         <form onSubmit={this.reportquestion}>
                           <label style={{ color: '#1C3687' }}>Report Message :</label>
-                          {/*out of test sysallabus
-quesrion not visible
-correct options not there
-two option not there
-
-find somthing wrong here report the question here */}
                           <br />
                           <br />
                           <textarea onChange={this.reportquestiontext} row='10' class="form-control" placeholder="Enter Reason For Report" required></textarea>
