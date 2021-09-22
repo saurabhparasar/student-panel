@@ -164,7 +164,7 @@ export class Feesummary extends Component {
                             }}>
                                 <td style={{ padding: '10px' }}>{index + 1}</td>
                                 <td>{item.amount_payable}</td>
-                                <td>{dateFormat(item.item.installment_date, 'dddd, mmmm d, yyyy')}</td>
+                                <td>{dateFormat(item.installment_date, 'dddd, mmmm d, yyyy')}</td>
                                 <td>{item.status}</td>
                                 <td>
                                     {item.status === 'Unpaid' ?

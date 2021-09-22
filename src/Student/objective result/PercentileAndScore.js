@@ -178,7 +178,7 @@ class PercentageAndScore extends Component {
                     </div>
                     <center>
                       <div style={{ padding: '20px 0 20px 0' }}>
-                        <p style={{ fontSize: '24px', fontFamily: 'Montserrat' }}><span style={{ fontSize: '28px', fontWeight: 'bold' }}>{this.state.result.marks_obtained / this.state.total_marks * 100} </span> %</p>
+                        <p style={{ fontSize: '24px', fontFamily: 'Montserrat' }}><span style={{ fontSize: '28px', fontWeight: 'bold' }}>{(this.state.result.marks_obtained / this.state.total_marks * 100).toFixed(2)} </span> %</p>
                       </div>
                     </center>
                   </div>
@@ -193,7 +193,7 @@ class PercentageAndScore extends Component {
                     </div>
                     <center>
                       <div style={{ padding: '20px 0 20px 0' }}>
-                        <p style={{ fontSize: '24px', fontFamily: 'Montserrat' }}><span style={{ fontSize: '28px', fontWeight: 'bold' }}>{this.state.percentile} </span> %</p>
+                        <p style={{ fontSize: '24px', fontFamily: 'Montserrat' }}><span style={{ fontSize: '28px', fontWeight: 'bold' }}>{(this.state.percentile * 1).toFixed(2)} </span> %</p>
                       </div>
                     </center>
                   </div>
