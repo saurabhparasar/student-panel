@@ -75,7 +75,7 @@ export class Myschedule extends Component {
             }
             if (item.pdf_type === 'Study') {
                 this.setState({
-                    ptmpdf: item.timetable_pdf
+                    studypdf: item.timetable_pdf
                 })
             }
         })
@@ -113,8 +113,8 @@ export class Myschedule extends Component {
         }
     }
     studypdf = () => {
-        if (this.state.ptmpdf !== '') {
-            window.open(this.state.ptmpdf, '_blank');
+        if (this.state.studypdf !== '') {
+            window.open(this.state.studypdf, '_blank');
         }
         else {
             alert('Study Material Not Found')
