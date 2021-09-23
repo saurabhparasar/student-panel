@@ -873,10 +873,12 @@ class Student extends Component {
                 <br />
                 <div class="row">
                   <div class="col-sm-6">
-                    <div class={Styles.smallbox} onClick={this.ViewAll}>
-                      <i style={icon} class="fas fa-clipboard-check"></i>
-                      <p style={text3}>My Test</p>
-                    </div>
+                    <Link to='/student/StudyMaterialSubject'>
+                      <div class={Styles.smallbox}>
+                        <i style={icon} class="fas fa-clipboard-check"></i>
+                        <p style={text3}>Study Material</p>
+                      </div>
+                    </Link>
                   </div>
                   <div class="col-sm-6">
                     <div class={Styles.smallbox} data-toggle="modal" data-target="#exampleModal1">

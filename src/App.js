@@ -74,7 +74,9 @@ import Myschedule from './Student/Myschedule';
 import AssignmentsList_student from '../src/Student/assignments/AssignmentsList_Student'
 import AssignmetsSubjects from '../src/Student/assignments/AssignmentsSubjects'
 import AssignmentsChapters from '../src/Student/assignments/AssignmentsChapters'
-
+import StudyMaterialSubject from './Student/StudyMaterial/StudyMaterialSubject';
+import StudyMaterial_List from './Student/StudyMaterial/StudyMaterial_List';
+import Payment_successPage from './component/Payment_successPage';
 class App extends Component {
   render() {
     return (
@@ -83,13 +85,15 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} value="Landing" />
             <Route exact path="/jee_advance_crash_course" component={jeepage} value="Landing" />
+            <Route exact path="/student/PaymentSuccess" component={Payment_successPage} value="Landing" />
+
             <Route exact path="/error" component={ErrorPage} />
             {/* <Route exact path="/login" component={Landing} /> */}
             <Route exact path="/forgotPassword" component={Mobile} />
             <Route exact path="/ChoosePassword" component={Password} />
             <Route exact path="/whoweare" component={Whoweare} />
             <Route exact path="/blankpage" component={Blankpage} />
-            <Route exact path='/parentpayment/:orderid' component={CustomerURL} />
+            <Route exact path='/parentpayment/:orderid/:installmentid' component={CustomerURL} />
             <Route exact path='/izest/result' component={ZestResults} />
             <Route exact path='/pastrecordings/:student_id' component={PastLiveClassStudent} />
             <ProtectedRoute exact path="/student" component={Student} value="Student" />
@@ -99,6 +103,8 @@ class App extends Component {
             <ProtectedRoute exact path="/student/submitassignment" component={AssignmentSubmit} value="Student" />
             <ProtectedRoute exact path="/student/submittedassignment" component={SubmittedAssignment} value="Student" />
             <ProtectedRoute exact path="/student/updateassignment" component={UpdateSubmittedAssignment} value="Student" />
+            <ProtectedRoute exact path="/student/StudyMaterialSubject" component={StudyMaterialSubject} value="Student" />
+            <ProtectedRoute exact path="/student/StudyMaterialList" component={StudyMaterial_List} value="Student" />
 
             <ProtectedRoute exact path="/student/videolectures" component={VideoLectures} value="Student" />
             <ProtectedRoute exact path="/student/subjectvideos" component={SubjectVideoLands} value="Student" />

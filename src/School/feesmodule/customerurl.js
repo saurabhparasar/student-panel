@@ -6,33 +6,34 @@ import Config from '../../config.json'
 
 
 function CustomerURL(props) {
-  let data = localStorage.getItem("userdetail");
-  data = JSON.parse(data);
-  console.log(data.token)
+  // let data = localStorage.getItem("userdetail");
+  // data = JSON.parse(data);
+  // console.log(data.token)
   const [username, setUsername] = useState('');
-  const [token, Settoken] = useState(data.token)
+  // const [token, Settoken] = useState(data.token)
   const [amount, setAmount] = useState('');
   const [promocode, setPromocode] = useState('');
   const [sectionid, setSection] = useState('');
   const [student, setStudent] = useState('');
   const [isloading, setLoading] = useState(false);
   const [order_id, setOrder] = useState('');
+  const [installment_id, setInstallment_id] = useState('')
 
 
   useEffect(() => {
     console.log('hello')
-    let req = {
-      redirect: 'follow',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Token ' + token
-      },
-    };
+    // let req = {
+    //   redirect: 'follow',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Token ' + token
+    //   },
+    // }
     let order = props.match.params.orderid;
-    axios.get(Config.SERVER_URL + 'payment/get-order-details/?order_id=' + order, req)
+    axios.get(Config.SERVER_URL + 'payment/get-order-details/?order_id=' + order)
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         setOrder(response.data.id);
         setUsername(response.data.student_assoc.mobile_number);
         setStudent(response.data.student_assoc);
@@ -43,86 +44,6 @@ function CustomerURL(props) {
         console.log(err)
       })
   }, [])
-  function loadScript(src) {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
-    });
-  }
-  async function displayRazorpay(e) {
-    let req = {
-      redirect: 'follow',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    };
-    e.preventDefault();
-    const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
-    );
-
-    if (!res) {
-      alert("Razorpay SDK failed to load. Are you online?");
-      return;
-    }
-
-    // creating a new order
-    const d = { amount: amount * 100, promocode: promocode, student: username, section: sectionid };
-    const result = await axios.post(Config.SERVER_URL + "payment/proceed-to-pay/", d, req);
-
-    if (!result) {
-      alert("Server error. Are you online?");
-      return;
-    }
-
-    // Getting the order details back
-    const { amount_ob, order_id, currency } = result.data;
-
-    const options = {
-      key: "rzp_test_xguDglODlGEiy0", // Enter the Key ID generated from the Dashboard
-      amount: (amount).toString(),
-      currency: currency,
-      name: username,
-      description: "Pay to Zinedu Classes",
-      image: {},
-      order_id: order_id,
-      handler: async function (response) {
-        const data = {
-          orderCreationId: order_id,
-          razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_order_id: response.razorpay_order_id,
-          razorpay_signature: response.razorpay_signature,
-        };
-
-        console.log(response.razorpay_payment_id + '  ' + response.razorpay_order_id + '  ' + response.razorpay_signature);
-
-        const result = await axios.post(Config.SERVER_URL + "payment/verify-payment/", data, req);
-      },
-      prefill: {
-        name: username,
-        email: student.email,
-        contact: "+91" + student.mobile_number,
-      },
-      notes: {
-        address: student.school_assoc.name,
-      },
-      theme: {
-        color: "#61dafb",
-      },
-    };
-
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-  }
-
 
   var bg = {
     // textAlign:'center',
@@ -181,98 +102,77 @@ function CustomerURL(props) {
   if (isloading) {
     load = (<center><ReactLoading type="cylon" color="#09AEE5" /></center>);
   }
-
-
-  let handleSuccess = (res) => {
-    console.log('hello')
-    // separate key and values from the res object which is nothing but param_dict
-    let keyArr = Object.keys(res);
-    let valArr = Object.values(res);
-    console.log(keyArr)
-
-    // when we start the payment verification we will hide our Product form
-    // document.getElementById("paymentFrm").style.display = "none";
-
-    // Lets create a form by DOM manipulation
-    // display messages as soon as payment starts
-    let heading1 = document.createElement("h1")
-    heading1.innerText = "Redirecting you to the paytm....";
-    let heading2 = document.createElement("h1");
-    heading2.innerText = "Please do not refresh your page....";
-
-    //create a form that will send necessary details to the paytm
-    let frm = document.createElement("form");
-    frm.action = "https://securegw.paytm.in/order/process/";
-    frm.method = "post";
-    frm.name = "paytmForm";
-
-    // we have to pass all the credentials that we've got from param_dict
-    keyArr.map((k, i) => {
-      console.log(k)
-      // create an input element
-      let inp = document.createElement("input");
-      inp.key = i;
-      inp.type = "hidden";
-      // input tag's name should be a key of param_dict
-      inp.name = k;
-      // input tag's value should be a value associated with the key that we are passing in inp.name
-      inp.value = valArr[i];
-      // append those all input tags in the form tag
-      frm.appendChild(inp);
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
     });
-
-    // append all the above tags into the body tag
-    document.body.appendChild(heading1);
-    document.body.appendChild(heading2);
-    document.body.appendChild(frm);
-    console.log(frm.values)
-    // finally submit that form
-    frm.submit();
-
-    // if you remember, the param_dict also has "'CALLBACK_URL': 'http://127.0.0.1:8000/api/handlepayment/'"
-    // so as soon as Paytm gets the payment it will hit that callback URL with some response and
-    // on the basis of that response we are displaying the "payment successful" or "failed" message
-  };
-
-
-  const paytmHandler = (e) => {
+  }
+  const displayRazorpay = async (e) => {
     e.preventDefault()
-    console.log('hello')
-    let param_dict = {
-      'MID': 'hMRTEB02443903731852',
-      'ORDER_ID': order_id,
-      'TXN_AMOUNT': amount,
-      'CUST_ID': student.email,
-      'INDUSTRY_TYPE_ID': 'Retail',
-      'WEBSITE': 'WEBSTAGING',
-      'CHANNEL_ID': 'WEB',
-      'CALLBACK_URL': 'http://localhost:8000/payment/collect-payment-support-handle/',
-    }
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
 
-    let req = {
-      redirect: 'follow',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Token ' + token
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+    let formdata = new FormData()
+    formdata.append('payment_type', "Razorpay")
+    formdata.append('installment_plan_id', props.match.params.installmentid)
+    // creating a new order
+    const result = await axios.post(Config.SERVER_URL + 'payment/collect-payment-support/', formdata)
+    // console.log(result.data.param_dict)
+    if (!result) {
+      alert("Server error. Are you online?");
+      return;
+    }
+    // Getting the order details back
+    const { amount, order_id, currency } = result.data.param_dict;
+    console.log(amount)
+    let amount_obj = amount * 100
+    const options = {
+      key: "rzp_live_bhjUPqxn9qOIMr", // Enter the Key ID generated from the Dashboard
+      amount: amount_obj.toString(),
+      currency: 'INR',
+      // name: "Soumya Corp.",
+      description: "ZinEdu Classes",
+      // order_id: order_id,
+      handler: async function (response) {
+        let formdata = new FormData()
+        formdata.append('order_id', order_id)
+        formdata.append('razor_payment_id', response.razorpay_payment_id)
+        formdata.append('type', 'Razorpay')
+        // const data = {
+        //     order_id: order_id,
+        //     type: 'Razorpay',
+        //     razor_payment_id: response.razorpay_payment_id,
+        //     // razorpayOrderId: response.razorpay_order_id,
+        //     // razorpaySignature: response.razorpay_signature,
+        // };
+        const result = await axios.post(Config.SERVER_URL + "payment/collect-payment-support-handle/", formdata);
+        alert(result.data.Success);
+        props.history.push('/student/PaymentSuccess')
+      },
+      prefill: {
+        name: student.name,
+        email: student.email,
+        contact: "+91" + student.mobile_number,
+      },
+      theme: {
+        color: "#61dafb",
       },
     };
-
-    let formdata = new FormData()
-    formdata.append('order_id', order_id)
-    formdata.append('amount', amount)
-    formdata.append('email', student.email)
-    axios.post('https://ap.zinedu.com/payment/get-checksum/', formdata, req).then((data) => {
-      console.log(data.data)
-      alert('Submit Successfully')
-      // window.open('https://main.zinedu.com/paymentrecipt/' + data.data.id, req)
-      // param_dict['CHECKSUMHASH'] = data.data.checksum;
-      // console.log(data.data)
-      handleSuccess(data.data.param_dict)
-    }).catch((err) => {
-      console.log('hello')
-    })
-    console.log(param_dict)
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   }
   const Logout = () => {
     localStorage.clear();
@@ -359,7 +259,7 @@ function CustomerURL(props) {
                     <div style={{ borderBottom: ' 1px solid rgba(0, 0, 0, 0.4)' }}>
                       <p style={{ color: 'black', fontSize: '17px', fontWeight: 'bold' }}>Payment Summary</p>
                     </div>
-                    <form onSubmit={paytmHandler} style={{ marginTop: '30px' }}>
+                    <form onSubmit={displayRazorpay} style={{ marginTop: '30px' }}>
                       <div class="row">
                         <div class="col-xs-6">
                           <p style={text2}>

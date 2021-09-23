@@ -87,7 +87,7 @@ export class Feesummary extends Component {
             this.setState({
                 link: 'https://main.zinedu.com' + data.data.payment_link
             })
-            window.open('https://main.zinedu.com' + data.data.payment_link)
+            window.open('https://main.zinedu.com' + data.data.payment_link + `/${id}`)
         }).catch((err) => {
             console.log(err)
         })
