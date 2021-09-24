@@ -82,6 +82,7 @@ class Studentnav extends Component {
                   <li><Link to={{ pathname: '/student/objectivetest', state: { exam_type: 1 } }}><a href="#"> My Test </a></Link></li>
                   <li><Link to={{ pathname: '/student/objectivetest', state: { exam_type: 2 } }}><a href="#"> My Assignment </a></Link></li>
                   <li><Link to={{ pathname: '/student/objectivetest', state: { exam_type: 3 } }}><a href="#"> My Quiz </a></Link></li>
+                  <li><Link to='/student/Myschedule'><a href="#"> My Schedule </a></Link></li>
                   <li><Link to='/student/profile'><a href="#"> My Profile </a></Link></li>
                   <li><Link to='/student/changepassword'><a href="#">  Change Password </a></Link></li>
                   <li><a><button style={{ border: 'none', background: 'none', fontFamily: 'Montserrat', fontSize: '14px' }} onClick={this.Logout}>Logout</button></a></li>

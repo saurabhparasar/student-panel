@@ -19,6 +19,7 @@ const Objectivetest = (props) => {
   const [alldata, setAlldata] = useState(true)
   const [attempteddata, setAttempteddata] = useState(false)
   const [pendingdata, setPendingdata] = useState(false)
+  const [latestdate, setLatestdate] = useState('')
 
 
   useEffect(() => {
@@ -131,8 +132,23 @@ const Objectivetest = (props) => {
         obj['exam_details'] = "";
         obj['attending_status'] = item.attending_status;
         all.push(obj);
+        console.log(Number(dateFormat(new Date(), "HH")))
+        // if (Number(dateFormat(item.exam_assoc.exam_end_date, "HH")) - Number(dateFormat(new Date(), "HH")) <= 2) {
+        //   console.log('true')
+        // } else {
+        //   console.log('false')
+        // }
+        // console.log(item.exam_assoc.exam_end_date)
+        // console.log(new Date().getHours(), 'dcgbu')
+        // var a = new Date()
+        // console.log(a.getHours(),'hours')
+        // console.log(dateFormat(a, "dddd, mmmm dS, yyyy, h:MM:ss TT"))
+        // console.log(dateFormat(item.exam_assoc.exam_end_date, "dddd, mmmm dS, yyyy, h:MM:ss TT"))
+        // if (dateFormat(a, "dddd, mmmm dS, yyyy, h:MM:ss TT") === dateFormat(item.exam_assoc.exam_end_date, "dddd, mmmm dS, yyyy, h:MM:ss TT")) {
+        //   console.log(true, 'true')
+        // }
       })
-      console.log(alldata)
+      console.log(all, 'duh')
     }
     {
       tests.map((item) => {
@@ -186,9 +202,9 @@ const Objectivetest = (props) => {
                   // {title: '', field: 'Check', render: rowData => <div>{rowData.exam_given=="Yes"?(<div></div>):(<div></div>)}</div>},
                   { title: '', field: '', render: rowData => <div>{rowData.attending_status == "LateSubmission" ? (<div><p style={{ color: '#FF1100', fontSize: '16px', fontFamily: 'Montserrat' }}>Late Submission</p></div>) : (<div></div>)}</div> },
                   {
-                    title: 'Result', field: '', render: rowData => <div>{rowData.exam_given == "Yes" ? (<div>
+                    title: 'Result', field: '', render: rowData => <div>{dateFormat(rowData.end_date) < dateFormat(new Date()) ? <div>
                       <img onClick={() => { onResultclick(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
-                    </div>) : (<div></div>)}</div>
+                    </div> : <div>Result will be declared on {dateFormat(rowData.end_date)} </div>}</div>
                   },
 
                 ]}
@@ -234,8 +250,9 @@ const Objectivetest = (props) => {
                   // { title: '', field: 'Action', render: rowData => <div>  <button type="button" className="btn" style={{background:'#1C3687',border:'none', borderRadius:'19px',fontFamily:'Montserrat', color:'white', fontSize:'15px' }} onClick={()=>{this.onStartclick(rowData)}} >Take Exam</button></div>},
                   { title: '', field: '', render: rowData => <div>{rowData.attending_status == "LateSubmission" ? (<div><p style={{ color: '#FF1100', fontSize: '16px', fontFamily: 'Montserrat' }}>Late Submission</p></div>) : (<div></div>)}</div> },
                   {
-                    title: 'Result', field: 'Action', render: rowData => <div>
-                      <img onClick={() => { onResultclickAttempted(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} /> </div>
+                    title: 'Result', field: '', render: rowData => <div>{dateFormat(rowData.exam_assoc.exam_end_date) < dateFormat(new Date()) ? <div>
+                      <img onClick={() => { onResultclick(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
+                    </div> : <div>Result will be declared on {dateFormat(rowData.exam_assoc.exam_end_date)} </div>}</div>
                   },
                 ]}
                 data={tests_given}

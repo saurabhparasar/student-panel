@@ -196,21 +196,6 @@ export class Myschedule extends Component {
 
                                 <h4 style={{ color: '#EB7926' }}>Course Flow</h4>
                             </div>
-                            <div className={Styles.main_time_box} onClick={this.studypdf}>
-                                <svg width="100" height="100" viewBox="0 0 167 148" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line x1="101.34" y1="145.344" x2="2.13851" y2="112.598" stroke="#E97A26" stroke-width="4" stroke-linecap="round" />
-                                    <path d="M65.8462 3L4.00023 74.44L30.7142 82.94L102.02 105.632L137.018 65.204L163.732 34.346V34.148L65.8462 3Z" stroke="#E97A26" stroke-width="4.964" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M65.8462 3C    43.7502 32.882 21.5122 48.096 6.87021 28.932C13.0222 69.852 59.1802 94.262 102.02 105.632L137.018 65.204L163.732 34.346V34.148L65.8462 3Z" stroke="#E97A26" stroke-width="4.964" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M99.8662 117.072L28.4835 94.0689L9.86621 88.072" stroke="#E97A26" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M99.8662 125.072L27.6904 102.069L8.86621 96.072" fill="#E0E0E0" />
-                                    <path d="M99.8662 125.072L27.6904 102.069L8.86621 96.072" stroke="#E97A26" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M99.8662 133.072L27.6904 109.276L8.86621 103.072" fill="#E0E0E0" />
-                                    <path d="M99.8662 133.072L27.6904 109.276L8.86621 103.072" stroke="#E97A26" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M137.018 65.204L102.02 105.632L101.886 105.588V145.144L163.732 73.704V34.346L137.018 65.204Z" stroke="#E97A26" stroke-width="4.964" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                    <line x1="3.64394" y1="75.1755" x2="2.08474" y2="111.142" stroke="#E97A26" stroke-width="4" stroke-linecap="round" />
-                                </svg>
-                                <h4 style={{ color: '#EB7926' }}>Study Material</h4>
-                            </div>
                         </div>
                     </div>
                 </div>
