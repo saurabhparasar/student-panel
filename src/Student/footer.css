@@ -1,21 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-footer {
-  height: 100%auto;
-  background-color: white;
-  padding-bottom: 10px;
-}
-
 .footer-logo {
   display: flex;
   justify-content: center;
   margin-top: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-logo img {
+    width: 100%;
+    padding: 0 40px;
+  }
 }
 
 .footer-section-01 {
@@ -42,7 +35,7 @@ footer {
 .col03 a {
   font-weight: 600;
   font-style: normal;
-  font-size: 17px;
+  font-size: clamp(13px, 2vw, 17px);
   line-height: 38px;
   color: #4c4c4c;
   font-family: "Montserrat", sans-serif;
@@ -60,7 +53,7 @@ footer {
 .address {
   font-weight: 600;
   font-style: normal;
-  font-size: 16px;
+  font-size: clamp(12px, 2vw, 16px);
   line-height: 19px;
   color: #4c4c4c;
   font-family: "Montserrat", sans-serif;
@@ -75,7 +68,7 @@ footer {
 .col04 h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  font-size: 25px;
+  font-size: clamp(15px, 2vw, 25px);
   line-height: 30.48px;
   color: #4c4c4c;
   text-transform: uppercase;
@@ -107,8 +100,8 @@ a:hover {
   padding-right: 20.5px;
 }
 
-.follow-links a {
-  padding-right: 14px;
+.follow-links li {
+  margin: 0 14px 14px 0;
 }
 
 .follow-links img,
@@ -127,15 +120,22 @@ a:hover {
   text-align: center;
   font-weight: 400px;
   font-style: normal;
-  font-size: 20px;
+  font-size: clamp(12px, 2vw, 20px);
   line-height: 24.38px;
   color: #fff;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
 }
 
+.footer-section-01 a,
+.footer-section-01 a:visited {
+  color: #4c4c4c !important;
+  background: none !important;
+}
+
 .footer-section-02 p {
   padding: 21px 0 26px;
+  margin: 0 !important;
 }
 
 @media screen and (max-width: 1000px) {
