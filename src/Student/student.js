@@ -398,7 +398,12 @@ class Student extends Component {
                       </p>
                     </div>
                     <div id="day">
-                      <p style={{ fontSize: "clamp(15px, 1.5vw, 25px)" }}>
+                      <p
+                        style={{
+                          fontSize: "clamp(15px, 1.5vw, 25px)",
+                          textTransform: "lowercase",
+                        }}
+                      >
                         {this.state.class_date[itemCounter]}
                       </p>
                       <p style={{ fontSize: "clamp(10px, 1.5vw, 17px)" }}>
@@ -746,14 +751,100 @@ class Student extends Component {
                     <div className="col-sm-6 grid-02-01">
                       <Link to="/student/StudyMaterialSubject">
                         <div className="student-mini-box mini-box-02">
-                          <i class="fas fa-clipboard-check mini-icon"></i>
-                          <p>Study Material</p>
+                          <svg
+                            style={{ marginTop: "11px" }}
+                            width="55"
+                            height="55"
+                            viewBox="0 0 167 148"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <line
+                              x1="101.34"
+                              y1="145.344"
+                              x2="2.13851"
+                              y2="112.598"
+                              stroke="#E97A26"
+                              stroke-width="4"
+                              stroke-linecap="round"
+                            ></line>
+                            <path
+                              d="M65.8462 3L4.00023 74.44L30.7142 82.94L102.02 105.632L137.018 65.204L163.732 34.346V34.148L65.8462 3Z"
+                              stroke="#E97A26"
+                              stroke-width="4.964"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                            <path
+                              d="M65.8462 3C    43.7502 32.882 21.5122 48.096 6.87021 28.932C13.0222 69.852 59.1802 94.262 102.02 105.632L137.018 65.204L163.732 34.346V34.148L65.8462 3Z"
+                              stroke="#E97A26"
+                              stroke-width="4.964"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                            <path
+                              d="M99.8662 117.072L28.4835 94.0689L9.86621 88.072"
+                              stroke="#E97A26"
+                              stroke-width="3"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                            <path
+                              d="M99.8662 125.072L27.6904 102.069L8.86621 96.072"
+                              fill="#E0E0E0"
+                            ></path>
+                            <path
+                              d="M99.8662 125.072L27.6904 102.069L8.86621 96.072"
+                              stroke="#E97A26"
+                              stroke-width="3"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                            <path
+                              d="M99.8662 133.072L27.6904 109.276L8.86621 103.072"
+                              fill="#E0E0E0"
+                            ></path>
+                            <path
+                              d="M99.8662 133.072L27.6904 109.276L8.86621 103.072"
+                              stroke="#E97A26"
+                              stroke-width="3"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                            <path
+                              d="M137.018 65.204L102.02 105.632L101.886 105.588V145.144L163.732 73.704V34.346L137.018 65.204Z"
+                              stroke="#E97A26"
+                              stroke-width="4.964"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            ></path>
+                            <line
+                              x1="3.64394"
+                              y1="75.1755"
+                              x2="2.08474"
+                              y2="111.142"
+                              stroke="#E97A26"
+                              stroke-width="4"
+                              stroke-linecap="round"
+                            ></line>
+                          </svg>
+                          <p>Modules</p>
                         </div>
                       </Link>
                     </div>
 
                     <div className="col-sm-6 grid-02-02">
-                      <div className="student-mini-box mini-box-02" data-toggle="modal" data-target="#exampleModal1">
+                      <div
+                        className="student-mini-box mini-box-02"
+                        data-toggle="modal"
+                        data-target="#exampleModal1"
+                      >
                         <i class="far fa-bell  mini-icon"></i>
                         <p>NOTIFICATIONS</p>
                       </div>
