@@ -186,7 +186,8 @@ img.rt-btn {
 }
 
 p.assign-box-01,
-p.assign-box-02 {
+p.assign-box-02,
+.assignment-flex-box-content {
   font-weight: 700;
   font-size: clamp(10px, 2vw, 27px);
   line-height: 160%;
@@ -196,7 +197,8 @@ p.assign-box-02 {
   text-align: center;
 }
 
-p.assign-box-01 {
+p.assign-box-01,
+.assignment-flex-box-content {
   margin: 20px 0;
   text-align: center;
 }
@@ -359,6 +361,23 @@ a {
   margin-top: 15px;
 }
 
+.assignment-flex-box-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 50px 0 20px;
+}
+
+.assignment-flex-box-content {
+  flex: 0 32%;
+  text-align: center;
+}
+
+.grid-layout {
+  margin-bottom: 30px;
+}
+
 @media screen and (max-width: 550px) {
   .student-box-01-content {
     display: grid;
@@ -402,7 +421,7 @@ a {
     grid-template-rows: repeat(2, 1fr) !important;
     align-items: center;
     justify-content: center;
-    margin: 0 10px;
+    margin: 0px 10px 30px;
   }
 
   .grid-01 {
@@ -431,7 +450,7 @@ a {
     grid-row: 2/3;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 30px;
+    margin-top: 15px;
   }
   .grid-02-01 {
     grid-column: 1/2;
@@ -491,6 +510,10 @@ a {
   .student-super-box-01 {
     min-height: 200px;
   }
+
+  .assignment-flex-box-container {
+    margin: 20px 0 10px;
+  }
 }
 
 @media screen and (max-width: 478px) {
@@ -521,13 +544,13 @@ a {
   }
 
   .grid-layout {
-    margin: 0 5px;
+    margin: 0 5px 30px;
   }
 }
 
 @media screen and (max-width: 348px) {
   .grid-layout {
-    margin: 0 2px;
+    margin: 0 2px 30px;
   }
 }
 

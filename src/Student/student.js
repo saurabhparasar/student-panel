@@ -458,7 +458,7 @@ class Student extends Component {
                 state: { exam_type: 2 },
               }}
             >
-              <p className="assign-box-01">{item}</p>
+              <div className="assignment-flex-box-content">{item}</div>
             </Link>
           </div>
         );
@@ -581,7 +581,7 @@ class Student extends Component {
                         </Link>
                       </div>
 
-                      <div class="row" style={{ marginTop: "80px" }}>
+                      <div className="assignment-flex-box-container">
                         {assignment}
                       </div>
                     </div>
@@ -851,8 +851,6 @@ class Student extends Component {
                     </div>
                   </div>
                 </div>
-                <br />
-                <br />
 
                 <div className="row">
                   <div className="col-xs-12">
