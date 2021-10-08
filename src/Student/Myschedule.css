@@ -1,0 +1,73 @@
+.shedule-page-container {
+  width: 100%;
+  font-family: "Montserrat";
+  margin: 70px 0;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+}
+
+.schedule-mini-box {
+  cursor: pointer;
+}
+.schedule-mini-box span {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1270px) {
+  .shedule-page-container {
+    grid-template-columns: 50px 1fr 50px;
+  }
+
+  .shedule-mini-boxes {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .shedule-page-container {
+    grid-template-columns: 20px 1fr 20px;
+  }
+}
+
+.shedule-page-container h2 {
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px;
+  color: #292e42;
+  margin-bottom: 30px;
+  grid-column: 2/3;
+}
+
+.shedule-mini-boxes {
+  grid-column: 2/3;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.schedule-mini-box {
+  width: 200px;
+  height: 180px;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: -4px 1px 4px 0px #00000040;
+  background-color: #272c49;
+  margin: 0 30px 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.schedule-mini-box svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.schedule-mini-box p {
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  color: #eb7926;
+}

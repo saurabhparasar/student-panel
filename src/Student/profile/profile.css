@@ -1,21 +1,195 @@
-.profile_box {
-    width: 600px;
-    height: auto;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 1px 0px 9px 1px rgb(0 0 0 / 20%);
-    padding-top: 10px;
+.profile-container,
+.psdContainer {
+  width: 100%;
+  font-family: "Montserrat";
+  margin: 70px 0;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
 }
-.profile_inner_box {
-    width: 70px;
-    border-radius: 50%;
-    margin-top: -40px;
-    height: 70px;
-    background-color: white;
-    box-shadow: 1px 0px 9px 1px rgb(0 0 0 / 20%);
+
+.profile-container h2,
+.psdContainer h2 {
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px;
+  color: #292e42;
+  margin-bottom: 30px;
+  grid-column: 2/3;
 }
-.profile_data{
-    font-size: 18px;
-    font-weight:400;
-    margin-top:20px;
+
+.profile-box-contain {
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 0px 1px 20px 0px #00000040;
+  border-radius: clamp(20px, 2vw, 38px);
+  grid-column: 2/3;
+}
+
+.profile-box-content {
+  margin: 45px 20px 15px 30px;
+}
+
+.profile-box-content div {
+  display: grid;
+  grid-template-columns: 1.2fr 90px 2fr;
+}
+
+.prof-lt {
+  grid-column: 1/2;
+  text-transform: uppercase;
+}
+
+.prof-rt {
+  grid-column: 3/4;
+}
+
+.profile-box-content p {
+  font-weight: 400;
+  font-size: 15px;
+  color: black;
+  margin: 0 0 20px;
+}
+
+.profile-icon {
+  font-size: 40px;
+  background-color: #ed7a27;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid #f0f0f0;
+  box-shadow: 0px 0px 12px 0px #00000040;
+}
+
+.profile-container legend {
+  border: none;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+  .profile-container h2 {
+    font-size: clamp(14px, 4vw, 24px);
+  }
+
+  .profile-box-content p {
+    font-size: clamp(10px, 2vw, 16px);
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .profile-container {
+    grid-template-columns: 40px 1fr 40px;
+  }
+
+  .profile-icon {
+    font-size: clamp(30px, 2vw, 40px);
+    width: 65px;
+    height: 65px;
+  }
+}
+
+@media screen and (max-width: 562px) {
+  .profile-container {
+    grid-template-columns: 20px 1fr 20px;
+  }
+
+  .profile-box-content div {
+    grid-template-columns: 1.2fr 60px 2fr;
+  }
+
+  .profile-container {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile-container {
+    grid-template-columns: 10px 1fr 10px;
+  }
+
+  .profile-box-content div {
+    grid-template-columns: 1.2fr 30px 2fr;
+  }
+
+  .profile-icon {
+    font-size: clamp(25px, 2vw, 30px);
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/*  styles for change password page */
+
+.psdContain {
+  max-width: 505px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0px 1px 8px 0px #00000040;
+  grid-column: 2/3;
+  margin: auto;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.psdContain input {
+  font-weight: 400;
+  font-size: 18px;
+  color: #586174;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid#C7C7C7;
+  padding: 14px 10px;
+  margin-top: 5px;
+  margin-bottom: 13px;
+}
+
+.psdContain input::placeholder {
+  color: #586174;
+  opacity: 1;
+}
+
+.psdContain button {
+  margin-top: 65px;
+  border-radius: 23px;
+  border: none;
+  outline: none;
+  background: #2a3885;
+  color: #fff;
+  padding: 15px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 625px) {
+  .psdContainer {
+    grid-template-columns: 40px 1fr 40px;
+    padding: clamp(20px, 3vw, 35px);
+  }
+
+  .psdContain button {
+    font-size: clamp(14px, 3vw, 18px);
+    border-radius: clamp(15px, 3vw, 23px);
+    margin-top: clamp(35px, 3vw, 65px);
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .psdContainer {
+    grid-template-columns: 10px 1fr 10px;
+    padding: clamp(10px, 3vw, 25px);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .psdContainer {
+    grid-template-columns: 5px 1fr 5px;
+    padding: 5px;
+  }
 }
