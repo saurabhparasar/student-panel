@@ -68,7 +68,7 @@ class Login extends Component {
                         pauseOnHover: true,
                     });
                     setTimeout(() => {
-                        this.props.history.push("/login");
+                        this.props.history.push("/");
                     }, 1500);
                 } else {
                     toast.error(data.data.Error, {
