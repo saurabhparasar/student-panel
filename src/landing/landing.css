@@ -218,13 +218,15 @@
 }
 
 @media screen and (max-width: 1160px) {
-  .login-container {
+  .login-main-container {
     background: url("img/zineduBackground-01.jpg") no-repeat;
+    background-position-y: center;
+    background-size: cover;
   }
 }
 
 @media screen and (max-width: 1000px) {
-  .login-container {
+  .login-main-container {
     background: url("img/zineduBackground-02.jpg") no-repeat;
     justify-content: center;
   }
