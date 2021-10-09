@@ -84,6 +84,59 @@ class Login extends Component {
                 console.log(err);
             });
     };
+    onReSubmithandler = (e) => {
+        e.preventDefault();
+        if (isNaN(this.props.location.state.mobile_number) === true) {
+            console.log("hello");
+            toast.error("Input Value Must be a Number", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
+        } else {
+            let formdata = new FormData();
+            formdata.append("username", this.props.location.state.mobile_number);
+            axios
+                .post(Config.SERVER_URL + `forgot-password-request/`, formdata)
+                .then((data) => {
+                    console.log(data);
+                    if (data.data.Success) {
+                        toast.success("Otp sent Successfully", {
+                            position: "top-center",
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                        });
+                        setTimeout(() => {
+                            this.props.history.push({
+                                pathname: "/ChoosePassword",
+                                state: { mobile_number: this.state.Mobile_Number },
+                            });
+                        }, 1500);
+                    } else {
+                        toast.error("User Does Not Exist", {
+                            position: "top-center",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                        });
+                    }
+                })
+                .catch((err) => {
+                    toast.error("Server Error", {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                    });
+                });
+        }
+    };
     render() {
         return (
             <div className="login-container">
@@ -133,7 +186,8 @@ class Login extends Component {
                         </div>
 
                         <div className="login-btn-03">
-                            <button type="submit">Submit</button>
+                            <button type="submit" style={{marginRight:"10px"}}>Submit</button>
+                            <button type = "submit" onClick={this.onReSubmithandler}>Resend OTP</button>
                         </div>
 
                         <div className="back-button" onClick={this.goBack} style={{ display: 'flex', alignItems: "center" }}>
