@@ -25,6 +25,10 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .login-container form {
@@ -222,6 +226,10 @@
     background: url("img/zineduBackground-01.jpg") no-repeat;
     background-position-y: center;
     background-size: cover;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   }
 }
 
