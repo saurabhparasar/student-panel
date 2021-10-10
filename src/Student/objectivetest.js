@@ -24,6 +24,7 @@ const Objectivetest = (props) => {
 
   useEffect(() => {
     console.log(props.location.state.exam_type)
+    console.log(props.location.state)
     setType(props.location.state.exam_type)
     var requestOptions = {
       redirect: 'follow',
@@ -43,7 +44,7 @@ const Objectivetest = (props) => {
         // var vars = lang.map((item) => {if(item.exam_assoc.activation_status=="Active")return(item)});
       })
       .catch(error => {
-        console.log(error)
+        this.props.history.push("/error");
       });
     axios.get(Config.SERVER_URL + 'student/get-scheduled-objective-exams/?student=' + student + '&type=' + props.location.state.exam_type, requestOptions)
       .then(response => {
@@ -53,6 +54,7 @@ const Objectivetest = (props) => {
         // var vars = lang.map((item) => {if(item.exam_assoc.activation_status=="Active")return(item)});
       })
       .catch(error => {
+        console.log(error)
       });
     axios.get(Config.SERVER_URL + 'student/get-given-objective_exams/?student=' + student + '&type=' + props.location.state.exam_type, requestOptions)
       .then(response => {
@@ -61,21 +63,48 @@ const Objectivetest = (props) => {
         setTests_given(lang)
       })
       .catch(error => {
+        console.log(error)
       });
     return () => {
       setType('')
     }
   }, [props.location.state.exam_type])
+  navigator.sayswho = (function () {
+    var ua = navigator.userAgent, tem,
+      M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+      tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+      return 'IE ' + (tem[1] || '');
+    }
+    if (M[1] === 'Chrome') {
+      tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+      if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+    return M.join(' ');
+  })();
   function onStartclick(item) {
-    props.history.push({
-      pathname: '/student/objectiveexaminstruction',
-      state: { examdetails: item.exam_details },
-    })
+    if (navigator.sayswho === "Chrome 93" || "Safari 15") {
+      props.history.push({
+        pathname: "/student/objectiveexaminstruction",
+        state: {
+          examdetails: item.exam_details,
+          exam_type: props.location.state.exam_type
+        },
+      });
+    } else {
+      console.log("hello");
+      alert("You are not using Chrome Or Safari browser.Please use chrome browser in android and safari in chrome")
+    }
   }
   function onResultclick(item) {
     props.history.push({
       pathname: '/student/objectiveresult/percentileandscore',
-      state: { exam_id: item.id },
+      state: {
+        exam_id: item.id,
+        exam_type: props.location.state.exam_type
+      },
     })
   }
   function onResultclickAttempted(item) {
@@ -107,16 +136,15 @@ const Objectivetest = (props) => {
     console.log(props.location.state.exam_type)
     examType = (<div>My Test<div style={{ float: 'right' }}>
       {sectionid === 303 ? <button style={{ margin: '10px' }} className='btn btn-danger' onClick={jeeadvance}>CLICK HERE FOR JEE ADVANCE TEST SERIES</button> : ''}
-      <a href={"https://class.zinedu.com/WEBStudent/StudentPageAccess?PageName=ObjectivePaidExamList&StudentId=" + student_id} className="btn btn-primary" >View Previous Exams and Results</a>
     </div></div>)
   }
   else if (props.location.state.exam_type == 2) {
     console.log(props.location.state.exam_type)
-    examType = (<div>My Assignments<div style={{ float: 'right' }}><a href={"https://class.zinedu.com/WEBStudent/StudentPageAccess?PageName=MyAssignment&StudentId=" + student_id} className="btn btn-primary" >View Previous Assignments</a></div></div>)
+    examType = (<div>My Assignments<div style={{ float: 'right' }}></div></div>)
   }
   else if (props.location.state.exam_type == 3) {
     console.log(props.location.state.exam_type)
-    examType = (<div>My Quiz<div style={{ float: 'right' }}><a href={"https://class.zinedu.com/WEBStudent/StudentPageAccess?PageName=TakeQuiz&StudentId=" + student_id} className="btn btn-primary" >View Previous Quizes</a></div></div>)
+    examType = (<div>My Quiz<div style={{ float: 'right' }}></div></div>)
   }
   if (tests_given) {
     var all = [];
@@ -131,8 +159,10 @@ const Objectivetest = (props) => {
         obj['end_date'] = item.exam_assoc.exam_end_date;
         obj['exam_details'] = "";
         obj['attending_status'] = item.attending_status;
+        obj['is_expired'] = item.exam_assoc.is_expired
         all.push(obj);
-        console.log(Number(dateFormat(new Date(), "HH")))
+        console.log(dateFormat(new Date(), "d"), 'date')
+        console.log(dateFormat(item.exam_assoc.exam_end_date, 'd'))
         // if (Number(dateFormat(item.exam_assoc.exam_end_date, "HH")) - Number(dateFormat(new Date(), "HH")) <= 2) {
         //   console.log('true')
         // } else {
@@ -161,6 +191,7 @@ const Objectivetest = (props) => {
           obj['end_date'] = item.exam_assoc.exam_end_date;
           obj['exam_details'] = item;
           obj['attending_status'] = "";
+          obj['is_expired'] = item.exam_assoc.is_expired
           all.push(obj);
           pending.push(obj);
         }
@@ -172,9 +203,31 @@ const Objectivetest = (props) => {
     //   return db - da;
     // });
   }
+  console.log(tests_given)
+  function updatechrome() {
+    window.open('https://www.google.com/chrome/?brand=JJTC&gclid=CjwKCAjw-sqKBhBjEiwAVaQ9a9BWl1iR9tK1c9dpnitlVDayYDWZz-8TX7q2thTBt_2wWju08CHphRoC5mcQAvD_BwE&gclsrc=aw.ds')
+  }
   return (
     <div>
       <Studentnav /><br /><br />
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              "You are not using Chrome Or Safari browser.Please use chrome browser in android and safari in chrome"
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={updatechrome}>Update Chrome</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className='container'>
         {alldata ? <div>
           <p style={{ fontSize: '20px', fontFamily: 'Montserrat', fontWeight: 'bold', color: '#292E42', marginTop: '60px' }}>{examType}</p>
@@ -196,17 +249,38 @@ const Objectivetest = (props) => {
                 columns={[
                   { title: 'Sr. No.', field: 'id', width: '10%' },
                   { title: 'Test Name', field: 'exam_name' },
-                  { title: 'Start Date/Time', field: 'start_date', render: rowData => <div>{dateFormat(rowData.start_date, "d/m/yyyy, h:MM:ss TT ")}</div> },
-                  { title: 'End Date/Time', field: 'end_date', render: rowData => <div>{dateFormat(rowData.end_date, "d/m/yyyy,h:MM:ss TT ")}</div> },
-                  { title: '', field: 'Action', render: rowData => <div>{rowData.exam_given == "No" ? (<div>  <button type="button" className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '19px', fontFamily: 'Montserrat', color: 'white', fontSize: '15px' }} onClick={() => { onStartclick(rowData) }} >Start</button></div>) : (<div></div>)}</div> },
-                  // {title: '', field: 'Check', render: rowData => <div>{rowData.exam_given=="Yes"?(<div></div>):(<div></div>)}</div>},
-                  { title: '', field: '', render: rowData => <div>{rowData.attending_status == "LateSubmission" ? (<div><p style={{ color: '#FF1100', fontSize: '16px', fontFamily: 'Montserrat' }}>Late Submission</p></div>) : (<div></div>)}</div> },
+                  { title: 'Start Date/Time', field: 'start_date', render: rowData => <div>{dateFormat(rowData.start_date, "d/m/yyyy, h:MM:ss TT")}</div> },
+                  { title: 'End Date/Time', field: 'end_date', render: rowData => <div>{dateFormat(rowData.end_date, "d/m/yyyy,h:MM:ss TT")}</div> },
                   {
-                    title: 'Result', field: '', render: rowData => <div>{dateFormat(rowData.end_date) < dateFormat(new Date()) ? <div>
-                      <img onClick={() => { onResultclick(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
-                    </div> : <div>Result will be declared on {dateFormat(rowData.end_date)} </div>}</div>
+                    title: '', field: 'Action', render: rowData => <div>{rowData.exam_given === undefined || rowData.exam_given == 'No'
+                      ?
+                      <div>  <button type="button" className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '19px', fontFamily: 'Montserrat', color: 'white', fontSize: '15px' }} onClick={() => { onStartclick(rowData) }} >Start</button></div> : <div>{rowData.exam_given == 'Yes' ? <div></div> : 'Comming Soon'}</div>
+                    }</div>
                   },
-
+                  // {title: '', field: 'Check', render: rowData => <div>{rowData.exam_given=="Yes"?(<div></div>):(<div></div>)}</div>},
+                  // <div>  <button type="button" className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '19px', fontFamily: 'Montserrat', color: 'white', fontSize: '15px' }} onClick={() => { onStartclick(rowData) }} >Start</button></div>
+                  {
+                    title: '', field: 'Action', render: rowData => <div>{props.location.state.exam_type == 1 ?
+                      <div>
+                      </div> : <div>
+                        <div>{rowData.attending_status == "LateSubmission" ? (<div><p style={{ color: '#FF1100', fontSize: '16px', fontFamily: 'Montserrat' }}>Late Submission</p></div>) : (<div></div>)}</div>
+                      </div>
+                    }
+                    </div>
+                  },
+                  {
+                    title: 'Result', field: '', render: rowData => <div> {
+                      props.location.state.exam_type == 1 ? <div>
+                        <div>{rowData.is_expired && rowData.exam_given === "Yes" ? <div>
+                          <img onClick={() => { onResultclick(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
+                        </div> : <div>{rowData.exam_given == "Yes" ? <div>Result will be declared on {dateFormat(rowData.end_date, "d/m/yyyy,h:MM:ss TT")}</div> : ''}</div>}</div>
+                      </div> : <div>
+                        <div>{rowData.exam_given == "Yes" ? (<div>
+                          <img onClick={() => { onResultclick(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
+                        </div>) : (<div></div>)}</div>
+                      </div>
+                    }</div>
+                  },
                 ]}
                 data={all}
                 options={{
@@ -248,11 +322,26 @@ const Objectivetest = (props) => {
                   { title: 'Start Date/Time', field: 'exam_start_time', render: rowData => <div>{dateFormat(rowData.exam_assoc.exam_start_date, "d/m/yyyy, h:MM:ss TT ")}</div> },
                   { title: 'End Date/Time', field: 'exam_end_time', render: rowData => <div>{dateFormat(rowData.exam_assoc.exam_end_date, "d/m/yyyy,h:MM:ss TT ")}</div> },
                   // { title: '', field: 'Action', render: rowData => <div>  <button type="button" className="btn" style={{background:'#1C3687',border:'none', borderRadius:'19px',fontFamily:'Montserrat', color:'white', fontSize:'15px' }} onClick={()=>{this.onStartclick(rowData)}} >Take Exam</button></div>},
-                  { title: '', field: '', render: rowData => <div>{rowData.attending_status == "LateSubmission" ? (<div><p style={{ color: '#FF1100', fontSize: '16px', fontFamily: 'Montserrat' }}>Late Submission</p></div>) : (<div></div>)}</div> },
                   {
-                    title: 'Result', field: '', render: rowData => <div>{dateFormat(rowData.exam_assoc.exam_end_date) < dateFormat(new Date()) ? <div>
-                      <img onClick={() => { onResultclick(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
-                    </div> : <div>Result will be declared on {dateFormat(rowData.exam_assoc.exam_end_date)} </div>}</div>
+                    title: '', field: 'Action', render: rowData => <div>{props.location.state.exam_type == 1 ?
+                      <div>
+                      </div> : <div>
+                        <div>{rowData.attending_status == "LateSubmission" ? (<div><p style={{ color: '#FF1100', fontSize: '16px', fontFamily: 'Montserrat' }}>Late Submission</p></div>) : (<div></div>)}</div>
+                      </div>
+                    }
+                    </div>
+                  },
+                  {
+                    title: 'Result', field: 'Action', render: rowData => <div>
+                      {props.location.state.exam_type == 1 ? <div>
+                        {String(rowData.exam_assoc.is_expired) === 'true' ? <div>
+                          <img onClick={() => { onResultclickAttempted(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
+                        </div> : <div>
+                          Result will be declared on {dateFormat(rowData.exam_assoc.exam_end_date, "d/m/yyyy,h:MM:ss TT ")}
+                        </div>}
+                      </div> : <div>
+                        <img onClick={() => { onResultclickAttempted(rowData) }} src={process.env.PUBLIC_URL + '/test 1.png'} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
+                      </div>} </div>
                   },
                 ]}
                 data={tests_given}
@@ -294,10 +383,9 @@ const Objectivetest = (props) => {
                 columns={[
                   { title: 'Sr. No.', field: 'id', width: '10%' },
                   { title: 'Test Name', field: 'exam_name' },
-                  { title: 'Start Date/Time', field: 'start_date', render: rowData => <div>{dateFormat(rowData.start_date, "UTC: d/m/yyyy, h:MM:ss TT ")}</div> },
-                  { title: 'End Date/Time', field: 'end_date', render: rowData => <div>{dateFormat(rowData.end_date, "UTC:d/m/yyyy,h:MM:ss TT ")}</div> },
+                  { title: 'Start Date/Time', field: 'start_date', render: rowData => <div>{dateFormat(rowData.start_date, "d/m/yyyy, h:MM:ss TT ")}</div> },
+                  { title: 'End Date/Time', field: 'end_date', render: rowData => <div>{dateFormat(rowData.end_date, "d/m/yyyy,h:MM:ss TT ")}</div> },
                   { title: '', field: 'Action', render: rowData => <div>  <button type="button" className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '19px', fontFamily: 'Montserrat', color: 'white', fontSize: '15px' }} onClick={() => { onStartclick(rowData) }} >Start</button></div> },
-
                 ]}
                 data={pending}
                 options={{

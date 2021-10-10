@@ -77,6 +77,7 @@ import AssignmentsChapters from '../src/Student/assignments/AssignmentsChapters'
 import StudyMaterialSubject from './Student/StudyMaterial/StudyMaterialSubject';
 import StudyMaterial_List from './Student/StudyMaterial/StudyMaterial_List';
 import Payment_successPage from './component/Payment_successPage';
+import StudentObjectiveTest from './Student/StudentObjectiveTest';
 class App extends Component {
   render() {
     return (
@@ -124,6 +125,7 @@ class App extends Component {
 
 
             <ProtectedRoute exact path="/student/objectivetest" component={Objectivetest} value="Student" />
+            <ProtectedRoute exact path="/student/StudentObjectiveTest" component={StudentObjectiveTest} value="Student" />
             <ProtectedRoute exact path="/student/objectiveexaminstruction" component={ObjectiveExamInstruction} value="Student" />
             <ProtectedRoute exact path="/student/objectiveexam" component={Objectiveexam} value="Student" />
             <ProtectedRoute exact path="/student/objectiveexamcomplete" component={ObjectiveExamComplete} value="Student" />
