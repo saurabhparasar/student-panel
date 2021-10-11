@@ -721,7 +721,7 @@ class Student extends Component {
               <div className="col-md-4">
                 <div className="grid-layout">
                   <div className="row grid-01">
-                    <div className="col-sm-6 grid-01-01">
+                    {/* <div className="col-sm-6 grid-01-01">
                       <Link
                         to="/student/doubtmodule/uploaddoubt"
                         style={{ textDecoration: "none" }}
@@ -731,7 +731,19 @@ class Student extends Component {
                           <p>ASK A DOUBT</p>
                         </div>
                       </Link>
+                    </div> */}
+                    <div className="col-sm-6 grid-01-01">
+                      <Link
+                        to="/student/doubtmodule/SearchQuestion"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div className="student-mini-box mini-box-02">
+                          <i class="far fa-question-circle mini-icon"></i>
+                          <p>MODULE SOLUTION</p>
+                        </div>
+                      </Link>
                     </div>
+                    
 
                     <div className="col-sm-6 grid-01-02">
                       <Link
