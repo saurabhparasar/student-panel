@@ -1,75 +1,75 @@
 ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: rgba(241,241,241,1);
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  .navbar{
-    margin-top: 17px;
-    padding-bottom: 5px;
-    border-bottom: 1.5px solid lightgrey;
-  }
-  .navbar li a{
-    color: black;
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.navbar {
+  margin-top: 17px;
+  padding-bottom: 5px;
+  border-bottom: 1.5px solid lightgrey;
+}
+.navbar li a {
+  color: black;
   margin: 0px 20px 0px 20px;
-  }
-  .navbar #myNavbar #icon1{
-    font-size: 20px;
-    margin: 15px 15px 10px 20px;
-  }
-  .navbar #myNavbar a{
-    background: none;
-  }
-  .whoweare{
-    margin-top: 40px;
-  }
-  .whoweare #text1{
-    font-family: Montserrat;
-    font-style: normal;
+}
+.navbar #myNavbar #icon1 {
+  font-size: 20px;
+  margin: 15px 15px 10px 20px;
+}
+.navbar #myNavbar a {
+  background: none;
+}
+.whoweare {
+  margin-top: 40px;
+}
+.whoweare #text1 {
+  font-family: Montserrat;
+  font-style: normal;
   font-weight: normal;
   font-size: 15px;
   line-height: 116.2%;
-  color: #6A6A6A;
-  }
-  .whoweare #text2{
-    margin-top: 70px;
-    font-family: Montserrat;
+  color: #6a6a6a;
+}
+.whoweare #text2 {
+  margin-top: 70px;
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
   line-height: 116.2%;
   color: #000000;
   font-weight: bold;
-  }
-  .whoweare #text3{
-    margin-top: 20px;
-    font-family: Montserrat;
+}
+.whoweare #text3 {
+  margin-top: 20px;
+  font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
   font-size: 15.5px;
   line-height: 147.2%;
   text-align: justify;
   color: #717171;
-  }
-  .whoweare #gap1{
-    margin-top: 60px;
-  }
-  .ourteam{
-    padding-bottom: 80px;
-  }
-  .ourteam #text1{
+}
+.whoweare #gap1 {
+  margin-top: 60px;
+}
+.ourteam {
+  padding-bottom: 80px;
+}
+.ourteam #text1 {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
@@ -78,8 +78,8 @@
   color: #000000;
   text-align: center;
   font-weight: bold;
-  }
-  .ourteam #text2{
+}
+.ourteam #text2 {
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
@@ -88,18 +88,17 @@
   text-align: center;
   color: #717171;
   margin-top: 20px;
-  }
-  .ourteam #gap1{
-    margin-top: 30px;
-    height: 20px;
-  
-  }
-  .ourteam #course{
-    text-align: center;
-  }
-  .ourteam #course .btn{
-    border: none;
-  outline:none;
+}
+.ourteam #gap1 {
+  margin-top: 30px;
+  height: 20px;
+}
+.ourteam #course {
+  text-align: center;
+}
+.ourteam #course .btn {
+  border: none;
+  outline: none;
   margin: 20px;
   color: grey;
   background: none;
@@ -108,47 +107,52 @@
   font-weight: bold;
   font-size: 16px;
   line-height: 116.2%;
-  }
-  .ourteam #course .selected{
-    background: linear-gradient(246.8deg, #C4C4C4 -5.42%, #293E80 -5.41%, #09AEE5 96.08%);
-   
-    border-width: 0px;
-    color: white;
-    font-family: Montserrat;
+}
+.ourteam #course .selected {
+  background: linear-gradient(
+    246.8deg,
+    #c4c4c4 -5.42%,
+    #293e80 -5.41%,
+    #09aee5 96.08%
+  );
+
+  border-width: 0px;
+  color: white;
+  font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 150%;
   margin: 30px;
+}
+.ourteam #gap2 {
+  margin-top: 60px;
+}
+@media (max-width: 600px) {
+  .ourteam #gap2 {
+    margin-top: 200px;
   }
-  .ourteam #gap2{
-    margin-top: 60px;
-  }
-  @media (max-width: 600px){
-    .ourteam #gap2{
-      margin-top:200px;
-    }
-  }
-  .ourteam #text3{
-    font-family: Montserrat;
+}
+.ourteam #text3 {
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
   font-size: 23px;
   line-height: 116.2%;
-  color: #1976D2;
+  color: #1976d2;
   margin-top: 15px;
   font-weight: bold;
-  }
-  .ourteam #text4{
-    font-family: Montserrat;
+}
+.ourteam #text4 {
+  font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
   font-size: 15.5px;
   line-height: 147.2%;
-  color: #4E4E4E;
-  }
+  color: #4e4e4e;
+}
 
-  .teamimg{
-    border-radius: 50%;
-    border: 11px solid #EDEDED;
-  }
+.teamimg {
+  border-radius: 50%;
+  border: 11px solid #ededed;
+}

@@ -352,10 +352,14 @@ class Objectiveexam extends Component {
         })
     }
   }
+  // start
   onnextClick = () => {
     var reviewarray = this.state.reviewarray;
+    console.log(this.state.reviewarray, 'Review Array')
     var reviewunanswered = this.state.reviewunanswered;
+    console.log(this.state.reviewunanswered, 'Revire un')
     var reviewanswered = this.state.reviewanswered;
+    console.log(this.state.reviewanswered, 'review answered')
     var index = this.state.selectedindex;
     if (reviewarray.includes(index)) {
       if (this.state.questions[index].ans_given == 0) {
@@ -418,6 +422,7 @@ class Objectiveexam extends Component {
         })
     }
   }
+  //end
 
   onQuestionClick = (item) => {
     document.getElementsByClassName('close')[0].click();

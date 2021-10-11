@@ -1,6 +1,6 @@
 import React from "react";
-import footerLogo from "./icons/footerLogo.svg"
-import weirdBox from "./icons/weirdBox.svg"
+import footerLogo from "./icons/footerLogo.svg";
+import weirdBox from "./icons/weirdBox.svg";
 import facebook from "./icons/facebook.svg";
 import linkedIn from "./icons/linkedIn.svg";
 import instagram from "./icons/instagram.svg";
@@ -21,7 +21,8 @@ export const Footer = () => {
           <ul className="address">
             <li>
               <p>
-                Zinedu Classes Pvt Ltd. 8th Floor, Riana Towers, Plot No. A- 93-94 Sector-136, Noida- 201305 (UP)
+                Zinedu Classes Pvt Ltd. 8th Floor, Riana Towers, Plot No. A-
+                93-94 Sector-136, Noida- 201305 (UP)
               </p>
             </li>
 
@@ -30,7 +31,9 @@ export const Footer = () => {
             </li>
 
             <li>
-              <a href="mailto:support@zineduclasses.com">support@zineduclasses.com</a>
+              <a href="mailto:support@zineduclasses.com">
+                support@zineduclasses.com
+              </a>
             </li>
           </ul>
         </div>
@@ -39,13 +42,15 @@ export const Footer = () => {
           <h2>Information</h2>
           <ul>
             <li>
-              <a href="#">Refund Policy</a>
+              <a href="/">Refund Policy</a>
             </li>
             <li>
               <a href="https://zinedu.com/privacy-policy/">Privacy Policy</a>
             </li>
             <li>
-              <a href="https://zinedu.com/terms-and-conditions/">Terms and Conditions</a>
+              <a href="https://zinedu.com/terms-and-conditions/">
+                Terms and Conditions
+              </a>
             </li>
           </ul>
         </div>
@@ -54,19 +59,49 @@ export const Footer = () => {
           <h2>Quick Links</h2>
           <ul>
             <li>
-              <a href="https://zinedu.com/sample-test-papers/" target="_blank" rel="noreferrer">Sample Test Papers</a>
+              <a
+                href="https://zinedu.com/sample-test-papers/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sample Test Papers
+              </a>
             </li>
             <li>
-              <a href="https://zinedu.com/contact-us/" target="_blank" rel="noreferrer">Contact Us</a>
+              <a
+                href="https://zinedu.com/contact-us/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Contact Us
+              </a>
             </li>
             <li>
-              <a href="https://zinedu.com/video-lectures/" target="_blank" rel="noreferrer">Sample Video Lectures</a>
+              <a
+                href="https://zinedu.com/video-lectures/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sample Video Lectures
+              </a>
             </li>
             <li>
-              <a href="https://zinedu.com/media/" target="_blank" rel="noreferrer">Media</a>
+              <a
+                href="https://zinedu.com/media/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Media
+              </a>
             </li>
             <li>
-              <a href="https://zinedu.com/sitemap/" target="_blank" rel="noreferrer">Sitemap</a>
+              <a
+                href="https://zinedu.com/sitemap/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sitemap
+              </a>
             </li>
           </ul>
         </div>
@@ -137,4 +172,4 @@ export const Footer = () => {
     </footer>
   );
 };
-export default Footer
+export default Footer;

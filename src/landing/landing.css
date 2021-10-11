@@ -1,0 +1,272 @@
+.login-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.login-navbar {
+  width: 100%;
+  height: 90px;
+  background-color: #fff;
+  box-shadow: 0px 4px 9px rgba(78, 78, 78, 0.25);
+  padding: 14px 45px;
+  display: flex;
+  align-items: center;
+}
+
+.login-navbar .logo img {
+  width: 240px;
+}
+
+.login-main-container {
+  width: 100%;
+  min-height: 90vh;
+  background: url("img/zineduBackground.jpg") no-repeat center center;
+  background-position-y: bottom;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.login-container form {
+  margin-right: 165px;
+  width: 360px;
+  background: #ffffff;
+  box-shadow: 0px 4px 13px 0px #ffffff40;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 46px;
+  font-family: "Montserrat";
+}
+
+.zinLogo img {
+  width: 200px;
+}
+
+.greet01 {
+  margin-top: 25px;
+}
+
+.greet02 {
+  margin-top: 35px;
+}
+
+.greet03 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.greet01 p {
+  font-weight: 700;
+  font-style: normal;
+  font-size: 18px;
+  color: #546e7a;
+  text-transform: capitalize;
+  margin: 0 !important;
+}
+
+.greet-p-01,
+.greet03 p {
+  font-weight: 700;
+  font-size: 18px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  color: #535d9f;
+  margin: 0 0 5px 0 !important;
+  text-align: center;
+}
+
+.greet-p-02 {
+  font-size: 12px;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  color: #546e7a;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.username-input {
+  margin-top: 42px;
+  margin-bottom: 25px;
+}
+
+.password-input {
+  margin-bottom: 15px;
+}
+
+.mobile-input {
+  margin-top: 35px;
+  margin-bottom: 40px;
+}
+
+.otp-input,
+.pass-input-01 {
+  margin-bottom: 15px;
+}
+
+.pass-input-02 {
+  margin-bottom: 35px;
+}
+
+.login-container input:focus {
+  outline: none;
+}
+
+.username-input input {
+  background: url("img/usernameInput.svg") no-repeat;
+  background-position: 28px;
+}
+
+.password-input input,
+.pass-input-01 input,
+.pass-input-02 input {
+  background: url("img/passwordInput.svg") no-repeat;
+  background-position: 28px;
+}
+
+.mobile-input input,
+.otp-input input {
+  background: url("img/mobileInput.svg") no-repeat;
+  background-position: 28px;
+}
+
+.login-container input {
+  width: 100%;
+  border-radius: 50px;
+  background-color: transparent;
+  border: 0.6px solid #787878;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  padding: 12px;
+  padding-left: 65px;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.forgotPass {
+  align-self: flex-end;
+  margin-bottom: 5px;
+}
+
+.wrongPass {
+  margin-bottom: 20px;
+}
+
+.forgotPass p,
+.wrongPass p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: capitalize;
+  color: #535d9f;
+  cursor: pointer;
+}
+
+.wrongPass p {
+  color: red;
+  cursor: default;
+  margin: 0 !important;
+  font-size: 13px;
+}
+
+.login-btn-01 button,
+.login-btn-02 button,
+.login-btn-03 button {
+  width: 120px;
+  border-radius: 20px;
+  background: #232f84;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  outline: none;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.login-btn-02 {
+  margin-bottom: 15px;
+}
+
+.login-btn-03 {
+  margin-bottom: 15px;
+}
+
+.login-btn-02 button {
+  width: 220px;
+}
+
+.login-btn-01 button:hover,
+.login-btn-02 button:hover {
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 1300px) {
+  .login-container {
+    background-position-x: -10px;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .login-main-container {
+    background: url("img/zineduBackground-01.jpg") no-repeat;
+    background-position-y: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .login-main-container {
+    background: url("img/zineduBackground-02.jpg") no-repeat;
+    justify-content: center;
+  }
+
+  .login-container form {
+    margin-right: 0;
+  }
+}
+
+.back-button p {
+  font-weight: 500;
+  font-size: 14px;
+  color: red;
+  cursor: pointer;
+  margin: 0;
+}
+
+.back-button i {
+  font-size: 14px;
+  color: red;
+}
+
+.Otp_style {
+  margin-top: 10px;
+  color: #515151;
+  text-align: center;
+}
+
+.otp_text {
+  color: #515151;
+}
+
+.re_text {
+  font-weight: bold;
+}

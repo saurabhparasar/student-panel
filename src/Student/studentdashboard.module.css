@@ -196,3 +196,13 @@ h3 {
   border-radius: 20px;
   margin-right: 50px;
 }
+
+@media (max-width: 575.98px) {
+  .main_schedule_box {
+    display: flex;
+    flex-direction: column;
+  }
+  .main_time_box{
+    width: 100%;
+  }
+}

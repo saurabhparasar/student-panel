@@ -168,7 +168,7 @@ export class Feesummary extends Component {
                                 <td>{item.status}</td>
                                 <td>
                                     {item.status === 'Unpaid' ?
-                                        <button className='btn' onClick={() => this.paytmLinkHandler(item.id)} style={{ backgroundColor: '#EB7926', color: 'white' }}>Pay Now</button> : <div>{item.fee_paid_on}</div>
+                                        <button className='btn' onClick={() => this.paytmLinkHandler(item.id)} style={{ backgroundColor: '#EB7926', color: 'white' }}>Pay Now</button> : <div>{dateFormat(item.fee_paid_on, 'mm/dd/yyyy')}</div>
                                     }
                                 </td>
                             </tr>
