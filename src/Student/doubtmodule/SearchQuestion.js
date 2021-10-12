@@ -5,7 +5,9 @@ import parse from 'html-react-parser'
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import ReactLoading from 'react-loading';
 import dateFormat from 'dateformat';
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+import Studentnav from "../studentnav";
+
 const ListofQuestions_Obj = () => {
     let data = localStorage.getItem("userdetail");
     data = JSON.parse(data);
@@ -142,6 +144,7 @@ const ListofQuestions_Obj = () => {
     }
     return (
         <div>
+            <Studentnav />
             <div class="modal fade" id="videoplayer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
