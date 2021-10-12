@@ -7,6 +7,7 @@ import ReactLoading from 'react-loading';
 import dateFormat from 'dateformat';
 import ReactPlayer from 'react-player';
 import Studentnav from "../studentnav";
+import Logo from "../../../src/component/questionlogo.png";
 
 const ListofQuestions_Obj = () => {
     let data = localStorage.getItem("userdetail");
@@ -142,8 +143,9 @@ const ListofQuestions_Obj = () => {
     function viewRecording(url) {
         Seturl(url)
     }
+
     return (
-        <div>
+        <div style={{backgroundColor: "#FAFAFA"}}>
             <Studentnav />
             <div class="modal fade" id="videoplayer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -174,7 +176,9 @@ const ListofQuestions_Obj = () => {
                 <div className='col-lg-10'>
                     {loading ? <ReactLoading type="cylon" color="#09AEE5" /> : ''}
                     <div style={{ margin: '20px' }}>
-                        <h2>List of Questions</h2>
+                        <div style={{textAlign: "center", marginRight: "280px", marginBottom: "50px" }}>
+                            <h2>Search Questions</h2>
+                        </div>
                         {/* <p>Total Number of Questions : {Question.length}</p> */}
                         {Question.length === 0 ? '' : <button className="btn btn-success" onClick={exportPDFWithComponent}>
                             GENERATE PDF
@@ -206,77 +210,88 @@ const ListofQuestions_Obj = () => {
                                     ))};
                                 </select>
                             </div> */}
-                            <div className='col-lg-6'>
+                            {/* <div className='col-lg-6'>
                                 <label>Enter Question Id</label>
                                 <input type='text' className='form-control' placeholder='Search By Question Id' value={ques_id} onChange={(e) => setQues(e.target.value)} /><br />
-                                <button className='btn btn-success' onClick={SearchQuestion}>Submit</button>
+                                <button className='btn btn-deep-orange' onClick={SearchQuestion}>Submit</button>
+                            </div> */}
+                            <div className="input-group mb-3">
+                                <div className="row" style={{display: 'flex'}}>
+                                    <input className="form-control" placeholder="Enter Question Id" style={{borderBottomLeftRadius: "25px", borderTopLeftRadius: "25px", backgroundColor: "#272C49", color: "white", padding: "22px"}} value={ques_id} onChange={(e) => setQues(e.target.value)}  />
+                                    <div className="col-sm-3 input-group-append">
+                                        <button className="btn btn-outline-secondary btn-lg" style={{borderBottomRightRadius: "25px", borderTopRightRadius: "25px", backgroundColor: "#EB7926", color:"#ffffff"}} type="button" onClick={SearchQuestion}><i class="fas fa-search"></i></button>
+                                    </div>
+                                    {/* <img src={Logo} style={{height: "auto", width: "376px", marginLeft: "300px"}} /> */}
+                                 </div>
                             </div>
                         </div>
                         {question_byId ? <div>
                             <div className='pdf_con'>
+                              <div style={{marginLeft: "10px"}}>
                                 <br />
-                                <div style={{ width: '100%', height: 'auto', border: '1px solid black', padding: '10px' }}>
+                                <div style={{ width: '70%', height: 'auto', padding: '10px', marginTop: "50px", marginLeft: "90px" }}>
                                     <div style={{ fontSize: '20px' }}><label>Question ID:</label>
-                                        <lable style={{ margin: '10px' }}>{question_byId.id}</lable></div>
+                                        <lable style={{ margin: '10px', color: "#EB7926" }}>{question_byId.id}</lable></div>
                                     <div><label>Question Text</label>
                                         <label>{parse(question_byId.question_text)}</label></div>
                                     <div className='row'>
-                                        <div className='col-lg-6'>
+                                        <div className='col-lg-12' >
                                             {question_byId.correct_option === '1' ?
-                                                <div style={{ border: '3px solid green', padding: '5px' }}>
-                                                    <label>Option 1</label>
+                                                <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#EB7926", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }} >
+                                                    <label>A</label>
                                                     {parse(question_byId.option1_text)}
                                                 </div>
-                                                : <div style={{ border: '3px solid red', padding: '5px' }}>
-                                                    <label>Option 1</label>
+                                                : <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#DEDEDE", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }}>
+                                                    <label>A</label>
                                                     {parse(question_byId.option1_text)}
                                                 </div>}
                                         </div>
-                                        <div className='col-lg-6'>
+                                        <div className='col-lg-12'>
                                             {question_byId.correct_option === '2' ?
-                                                <div style={{ border: '3px solid green', padding: '5px' }}>
-                                                    <label>Option 2</label>
+                                                <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#EB7926", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }}>
+                                                    <label>B</label>
                                                     {parse(question_byId.option2_text)}
                                                 </div>
-                                                : <div style={{ border: '3px solid red', padding: '5px' }}>
-                                                    <label>Option 2</label>
+                                                : <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#DEDEDE", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }}>
+                                                    <label>B</label>
                                                     {parse(question_byId.option2_text)}
                                                 </div>}
                                         </div>
                                     </div><br />
                                     <div className='row'>
-                                        <div className='col-lg-6'>
+                                        <div className='col-lg-12'>
                                             {question_byId.correct_option === '3' ?
-                                                <div style={{ border: '3px solid green', padding: '5px' }}>
-                                                    <label>Option 3</label>
+                                                <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#EB7926", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }}>
+                                                    <label>C</label>
                                                     {parse(question_byId.option3_text)}
                                                 </div>
-                                                : <div style={{ border: '3px solid red', padding: '5px' }}>
-                                                    <label>Option 3</label>
+                                                : <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#DEDEDE", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }}>
+                                                    <label>C</label>
                                                     {parse(question_byId.option3_text)}
                                                 </div>}
                                         </div>
-                                        <div className='col-lg-6'>
+                                        <div className='col-lg-12'>
                                             {question_byId.correct_option === '4' ?
-                                                <div style={{ border: '3px solid green', padding: '5px' }}>
-                                                    <label>Option 4</label>
+                                                <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#EB7926", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }}>
+                                                    <label>D</label>
                                                     {parse(question_byId.option4_text)}
                                                 </div>
-                                                : <div style={{ border: '3px solid red', padding: '5px' }}>
-                                                    <label>Option 1</label>
+                                                : <div style={{padding: '5px', borderRadius: '25px', backgroundColor: "#DEDEDE", paddingLeft: "25px", paddingTop: "12px", margin: "10px" }}>
+                                                    <label>D</label>
                                                     {parse(question_byId.option4_text)}
                                                 </div>}
                                         </div>
                                     </div><br />
-                                    <label>Solution Text</label>
-                                    <div>{parse(question_byId.solution_text)}</div><br />
+                                    <label style={{fontSize: "20px"}}>Solution Text:</label>
+                                    <div style={{color:"#EB7926"}}>{parse(question_byId.solution_text)}</div><br />
                                     <label>Difficulty : {question_byId.difficulty_level}</label><br />
                                     <label>Level : {question_byId.level_i}</label><br />
                                     <label>Created on : {dateFormat(question_byId.created_on)}</label><br /><br />
                                     <label>Chapter Name : {question_byId.chapter_name}</label><br /><br />
-                                    <button className='btn btn-primary' data-toggle="modal" data-target="#videoplayer" onClick={() => viewRecording(question_byId.solution_video)} style={{ margin: '20px' }}>View Recording</button>
+                                    <button className='btn btn-primary' data-toggle="modal" data-target="#videoplayer" onClick={() => viewRecording(question_byId.solution_video)} style={{ margin: '20px', backgroundColor: "#272C49" }}>View Recording</button>
                                 </div>
                                 <br />
+                              </div>
                             </div>
                         </div> :
                             <div>
@@ -286,7 +301,7 @@ const ListofQuestions_Obj = () => {
                                             <br />
                                             <div style={{ width: '100%', height: 'auto', border: '1px solid black', padding: '10px' }}>
                                                 <div style={{ fontSize: '20px' }}><label>Question ID:</label>
-                                                    <lable style={{ margin: '10px' }}>{item.id}</lable></div>
+                                                    <lable style={{ margin: '10px', color: "orange" }}>{item.id}</lable></div>
                                                 <div><label>Question Text</label>
                                                     <label>{parse(item.question_text)}</label></div>
                                                 <div className='row'>
