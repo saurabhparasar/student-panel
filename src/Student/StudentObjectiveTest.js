@@ -48,7 +48,6 @@ class StudentObjectiveTest extends Component {
         formdata.append("student", this.state.student);
         var requestOptions = {
             method: 'POST',
-
             body: formdata,
             redirect: 'follow',
             headers: {
@@ -59,23 +58,59 @@ class StudentObjectiveTest extends Component {
         fetch(Config.SERVER_URL + 'student/start-objective-exam/', requestOptions)
             .then(response => response.json())
             .then(json => {
-                console.log(json);
-                let time_over = json.time_over;
-                let time_over_hours = Number(time_over.split(':')[0]); //hour
-                let time_over_minutes = Number(time_over.split(':')[1]);//minutes
-                let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));//second
-                let total_time = this.props.location.state.examdetails.exam_duration;
-                let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
-                let c_seconds = this.convertToSeconds(0, total_time, 0);
-                console.log(latest_seconds);
-                console.log(c_seconds);
-                let actual_time = c_seconds - latest_seconds;
-                var minutes = Math.floor(actual_time / 60);
+                console.log(json.data, 'data');
+                var remaining_time = 3600
+                let actual_time = remaining_time
+                var minutes = Math.floor(remaining_time / 60);
+                console.log(minutes, 'minutes')
                 var seconds = actual_time - minutes * 60;
+                var unansweredquestions = 0;
+                var answeredquestions = 0;
+                var visitedunanswered = 0;
+                var visitedunansweredarray = [];
+                var reviewarray = [];
+                var reviewanswered = 0;
+                var reviewunanswered = 0;
+                console.log(json.data)
+                {
+                    json.data.map((item, index) => {
+                        if (item.ans_given == 0) {
+                            unansweredquestions = unansweredquestions + 1; // sum of questions array total unansquestion 
+                        }
+                        else if (item.ans_given != 0) {
+                            answeredquestions = answeredquestions + 1;
+                        }
+                        if (item.start_time != null) {
+                            visitedunansweredarray.push(index); //start time null hai toh visited mai push kar dete hai
+                        }
+                        if (item.review_status == "Yes") {
+                            reviewarray.push(index);
+                            if (item.ans_given == 0) {
+                                reviewunanswered = reviewunanswered + 1; // if review status yes hai ori ans given 0 hai toh unans ho jayega
+                            }
+                            else if (item.ans_given != 0) {
+                                reviewanswered = reviewanswered + 1; // agr ans de diya hai toh 
+                            }
+                        }
+                    })
+                }
+                if (!visitedunansweredarray.includes(0)) { // agr  visitedunansweredarray main 0 index nhi milta toh  visitedunansweredarray mai 0 index push kr dega
+                    visitedunansweredarray.push(0);
+                }
                 this.setState({
-                    minutes: minutes,
-                    seconds: seconds,
-                    time_over: time_over,
+                    unansweredquestions: unansweredquestions,
+                    answeredquestions: answeredquestions,
+                    visitedunansweredarray: visitedunansweredarray,
+                    reviewarray: reviewarray,
+                    reviewanswered: reviewanswered,
+                    reviewunanswered: reviewunanswered, // helo
+                    // exam_details: json, //exam details
+                    // examid: this.json.data.id, // exam id
+                    // selectedquestion: json.data[0], // slected question mai phla index ka question dal diya
+                    // questions: this.props.location.state.questions.data, // question mai sare questions ka data daal diya 
+                    // time_over: this.props.location.state.questions.time_over, // time over 
+                    minutes: minutes, // line number 108
+                    seconds: seconds, // line number 109
                 });
                 this.countDown();
                 console.log('Timmer')
@@ -93,20 +128,21 @@ class StudentObjectiveTest extends Component {
             this.props.history.push('/');
         }
         else {
-            console.log(this.props);
-            let time_over = this.props.location.state.questions.time_over;
-            console.log(time_over)
-            let time_over_hours = Number(time_over.split(':')[0]);// hour
-            let time_over_minutes = Number(time_over.split(':')[1]);//minutes 
-            let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));//second
-            let total_time = this.props.location.state.examdetails.exam_duration; //exam duration
-            let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
-            let c_seconds = this.convertToSeconds(0, total_time, 0);
-            console.log(latest_seconds);
-            console.log(c_seconds);
-            let actual_time = c_seconds - latest_seconds;
-            var minutes = Math.floor(actual_time / 60);
-            var seconds = actual_time - minutes * 60;
+            var remaining_time = 3600
+            // console.log(this.props);
+            // let time_over = this.props.location.state.questions.time_over;
+            // console.log(time_over)
+            // let time_over_hours = Number(time_over.split(':')[0]);// hour
+            // let time_over_minutes = Number(time_over.split(':')[1]);//minutes 
+            // let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));//second
+            // let total_time = this.props.location.state.examdetails.exam_duration; //exam duration
+            // let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
+            // let c_seconds = this.convertToSeconds(0, total_time, 0);
+            // console.log(latest_seconds);
+            // console.log(c_seconds);
+            let actual_time = remaining_time;
+            var minutes = Math.floor(remaining_time / 60);
+            var seconds = remaining_time - minutes * 60;
             var unansweredquestions = 0;
             var answeredquestions = 0;
             var visitedunanswered = 0;
@@ -711,7 +747,7 @@ class StudentObjectiveTest extends Component {
                 timer = (<div><div className="timer" style={{ fontSize: '20px', fontFamily: 'Montserrat', fontWeight: 'bold', float: 'right' }}><svg style={{ marginRight: '5px', marginBottom: '-1.5px' }} width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.2025 6V5.5H11.7025H13H13.5V6V12.2333V12.4523L13.339 12.6008L9.25644 16.3675L8.91739 16.6803L8.57834 16.3675L7.66095 15.5211L7.26264 15.1536L7.66095 14.7861L11.2025 11.5187V6Z" fill="#EA7A26" stroke="#EB7926" />
                     <path d="M11 0.5C16.79 0.5 21.5 5.20996 21.5 11C21.5 16.79 16.79 21.5 11 21.5C5.20996 21.5 0.5 16.79 0.5 11C0.5 5.20996 5.20996 0.5 11 0.5ZM11 19.25C15.5487 19.25 19.25 15.5487 19.25 11C19.25 6.45131 15.5487 2.75001 11 2.75001C6.45131 2.75001 2.75 6.45131 2.75 11C2.75 15.5487 6.45131 19.25 11 19.25Z" fill="#EA7A26" stroke="#EB7926" />
-                </svg><span id="time">{this.state.minutes} Minutes : {this.state.seconds} Seconds</span></div></div>);
+                </svg><span id="time">{this.state.minutes} : {this.state.seconds}</span></div></div>);
             }
         }
         else if (this.state.exam_details.timer_status == 3) {

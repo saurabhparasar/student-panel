@@ -94,7 +94,7 @@ const Objectivetest = (props) => {
         },
       });
     } else {
-      console.log("hello");
+      // console.log("hello");
       alert("You are not using Chrome Or Safari browser.Please use chrome browser in android and safari in chrome")
     }
   }
