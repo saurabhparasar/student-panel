@@ -147,6 +147,7 @@ const ListofQuestions_Obj = () => {
     return (
       <div style={{fontFamily: "Montserrat", backgroundColor: "#fbfbfb"}}>
         <Studentnav />
+        <div className="container">
         <div className="modal fade m-4" id="videoplayer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
@@ -180,9 +181,7 @@ const ListofQuestions_Obj = () => {
         </div>
         <h2 className="text-center p-2 m-3">Search Question</h2>
 
-        <div className="row text-center m-3">
-          <div className="col-6 col-md-6 text-center">
-            {loading ? <ReactLoading type="cylon" color="#09AEE5" /> : ""}
+        {loading ? <ReactLoading type="cylon" color="#09AEE5" /> : ""}
             {Question.length === 0 ? (
               ""
             ) : (
@@ -191,13 +190,16 @@ const ListofQuestions_Obj = () => {
               </button>
             )}
 
+        <div className="row text-center m-3">
+          <div className="col-6 col-md-6 text-center">
+
             <form className="form justify-content-center">
-              <div className="row d-flex m-4">
+              <div className="row d-flex align-items-center m-4">
                 <div className="d-flex col-10 col-md-10 justify-content-center m-4">
-                  <input className="form-control justify-content-center" type="search" placeholder="Enter Question Id" value={ques_id} onChange={(e) => setQues(e.target.value)} style={{backgroundColor: "#272C49", color: "#ffffff", borderRadius: "1.4em 1.4em" }} />
+                  <input className="form-control justify-content-center" type="search" placeholder="Enter Question Id" value={ques_id} onChange={(e) => setQues(e.target.value)} style={{backgroundColor: "#272C49", color: "#ffffff", borderRadius: "1.4em 1.4em", height: "3.5em"}} />
                 </div>
                 <div className="d-flex col-md-2 col-2 text-center justify-content-center m-4">
-                  <button className="btn" type="button" onClick={SearchQuestion} style={{ backgroundColor: "#EB7926", color: "#ffffff", borderRadius: "1.4em 1.4em"}}>
+                  <button className="btn" type="button" onClick={SearchQuestion} style={{ backgroundColor: "#EB7926", color: "#ffffff", borderRadius: "1.4em 1.4em", height: "3.5em", width: "8em"}}>
                         <i className="fas fa-search justify-content-center"></i>
                   </button>
                 </div>
@@ -350,6 +352,7 @@ const ListofQuestions_Obj = () => {
             </PDFExport>}
         </div>
           )}
+        </div>
         </div>
       </div>
     );
