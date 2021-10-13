@@ -32,6 +32,7 @@
 }
 
 .login-container form {
+  margin: 10% 0;
   margin-right: 165px;
   width: 360px;
   background: #ffffff;
@@ -227,9 +228,9 @@
     background-position-y: center;
     background-size: cover;
     -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 }
 
