@@ -257,7 +257,7 @@ const ListofQuestions_Obj = () => {
                                                     {parse(question_byId.option2_text)}
                                                 </div>}
                                         </div>
-                                    </div><br />
+                                    </div>
                                     <div className='row'>
                                         <div className='col-lg-12'>
                                             {question_byId.correct_option === '3' ?
