@@ -87,7 +87,7 @@ class Login extends Component {
     onReSubmithandler = (e) => {
         e.preventDefault();
         if (isNaN(this.props.location.state.mobile_number) === true) {
-            console.log("hello");
+            // console.log("hello");
             toast.error("Input Value Must be a Number", {
                 position: "top-center",
                 autoClose: 2000,
@@ -101,8 +101,11 @@ class Login extends Component {
             axios
                 .post(Config.SERVER_URL + `forgot-password-request/`, formdata)
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.data.Success) {
+                        this.setState({
+                            otpsuccess:true,
+                        })
                         toast.success("Otp sent Successfully", {
                             position: "top-center",
                             autoClose: 1000,
@@ -110,13 +113,14 @@ class Login extends Component {
                             closeOnClick: true,
                             pauseOnHover: true,
                         });
-                        setTimeout(() => {
-                            this.props.history.push({
-                                pathname: "/ChoosePassword",
-                                state: { mobile_number: this.state.Mobile_Number },
-                            });
-                        }, 1500);
-                    } else {
+                    //     setTimeout(() => {
+                    //         this.props.history.push({
+                    //             pathname: "/ChoosePassword",
+                    //             state: { mobile_number: this.state.Mobile_Number },
+                    //         });
+                    //     }, 1500);
+                     } 
+                    else {
                         toast.error("User Does Not Exist", {
                             position: "top-center",
                             autoClose: 2000,
