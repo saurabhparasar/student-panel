@@ -8,6 +8,7 @@ import CustomerURL from './School/feesmodule/customerurl';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //Miscllenous
 import ZestResults from './Miscllenous/ZestResults.js';
+import SearchQuestion from './Student/doubtmodule/SearchQuestion';
 //Permission
 
 //-------------------------------Student module pages
@@ -94,6 +95,7 @@ class App extends Component {
             <Route exact path="/ChoosePassword" component={Password} />
             <Route exact path="/whoweare" component={Whoweare} />
             <Route exact path="/blankpage" component={Blankpage} />
+            <Route exact path="/student/doubtmodule/SearchQuestion" component={SearchQuestion}/>
             <Route exact path='/parentpayment/:orderid/:installmentid' component={CustomerURL} />
             <Route exact path='/izest/result' component={ZestResults} />
             <Route exact path='/pastrecordings/:student_id' component={PastLiveClassStudent} />
