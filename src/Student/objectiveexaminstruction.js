@@ -5,6 +5,7 @@ import parse from 'html-react-parser';
 import Config from '../config.json';
 import Studentnav from './studentnav';
 import ReactLoading from "react-loading";
+import dateFormat from 'dateformat';
 class ObjectiveExamInstruction extends Component {
   constructor() {
     super();
@@ -17,12 +18,33 @@ class ObjectiveExamInstruction extends Component {
       test: '',
       isloading: false,
       isRead: false,
+      exam_time: ''
     }
   }
-
   componentDidMount = () => {
+    var requestOptions = {
+      redirect: 'follow',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Token' + this.state.token
+      },
+    };
+    console.log(this.props.location.state.examdetails.exam_assoc)
+    let formdata = new FormData()
+    formdata.append('exam', this.props.location.state.examdetails.exam_assoc.id)
+    formdata.append('student', this.state.student)
+    axios.post(Config.SERVER_URL + `student/instruction-objective-exam`, formdata).then((data) => {
+      console.log(data.data)
+      this.setState({
+        exam_time: data.data.end_time
+      })
+    }).catch((err) => {
+      console.log(err)
+    })
+    console.log(this.props.location.state.examdetails.exam_assoc)
     if (typeof (this.props.location.state) != 'undefined') {
-      // console.log(this.props.location.state.examdetails);
+      console.log(this.props.location.state.examdetails, 'exam details');
       this.setState({ test: this.props.location.state.examdetails.exam_assoc })
     }
     else {
@@ -144,7 +166,8 @@ class ObjectiveExamInstruction extends Component {
                 </div>
                 <center>
                   <button className='btn btn-primary' style={{ border: 'none', background: '#1C3687', marginTop: '30px', borderRadius: '29px', fontSize: '16px', width: '200px', marginRight: '10px' }} onClick={this.onStartclick}>CONTINUE EXAM</button>
-                  <button className='btn btn-primary' style={{ border: 'none', background: '#EB7926', marginTop: '30px', borderRadius: '29px', fontSize: '16px', width: '200px' }} onClick={() => { this.props.history.push('/') }}>TAKE LATER</button>
+                  <button className='btn btn-primary' style={{ border: 'none', background: '#EB7926', marginTop: '30px', borderRadius: '29px', fontSize: '16px', width: '200px' }} onClick={() => { this.props.history.push('/') }}>TAKE LATER</button><br /><br />
+                  <h2>If you click continue exam now your exam will end : {dateFormat(this.state.exam_time, "shortTime")} </h2>
                 </center>
               </div>
             </div>
@@ -152,7 +175,6 @@ class ObjectiveExamInstruction extends Component {
         }
         <br />
       </div>
-
     );
   }
 }

@@ -48,6 +48,7 @@ class StudentObjectiveTest extends Component {
         formdata.append("student", this.state.student);
         var requestOptions = {
             method: 'POST',
+
             body: formdata,
             redirect: 'follow',
             headers: {
@@ -58,59 +59,14 @@ class StudentObjectiveTest extends Component {
         fetch(Config.SERVER_URL + 'student/start-objective-exam/', requestOptions)
             .then(response => response.json())
             .then(json => {
-                console.log(json.data, 'data');
-                var remaining_time = 3600
-                let actual_time = remaining_time
+                console.log(json, 'json data');
+                var remaining_time = json.remaining_time
+                let actual_time = remaining_time;
                 var minutes = Math.floor(remaining_time / 60);
-                console.log(minutes, 'minutes')
-                var seconds = actual_time - minutes * 60;
-                var unansweredquestions = 0;
-                var answeredquestions = 0;
-                var visitedunanswered = 0;
-                var visitedunansweredarray = [];
-                var reviewarray = [];
-                var reviewanswered = 0;
-                var reviewunanswered = 0;
-                console.log(json.data)
-                {
-                    json.data.map((item, index) => {
-                        if (item.ans_given == 0) {
-                            unansweredquestions = unansweredquestions + 1; // sum of questions array total unansquestion 
-                        }
-                        else if (item.ans_given != 0) {
-                            answeredquestions = answeredquestions + 1;
-                        }
-                        if (item.start_time != null) {
-                            visitedunansweredarray.push(index); //start time null hai toh visited mai push kar dete hai
-                        }
-                        if (item.review_status == "Yes") {
-                            reviewarray.push(index);
-                            if (item.ans_given == 0) {
-                                reviewunanswered = reviewunanswered + 1; // if review status yes hai ori ans given 0 hai toh unans ho jayega
-                            }
-                            else if (item.ans_given != 0) {
-                                reviewanswered = reviewanswered + 1; // agr ans de diya hai toh 
-                            }
-                        }
-                    })
-                }
-                if (!visitedunansweredarray.includes(0)) { // agr  visitedunansweredarray main 0 index nhi milta toh  visitedunansweredarray mai 0 index push kr dega
-                    visitedunansweredarray.push(0);
-                }
+                var seconds = remaining_time - minutes * 60;
                 this.setState({
-                    unansweredquestions: unansweredquestions,
-                    answeredquestions: answeredquestions,
-                    visitedunansweredarray: visitedunansweredarray,
-                    reviewarray: reviewarray,
-                    reviewanswered: reviewanswered,
-                    reviewunanswered: reviewunanswered, // helo
-                    // exam_details: json, //exam details
-                    // examid: this.json.data.id, // exam id
-                    // selectedquestion: json.data[0], // slected question mai phla index ka question dal diya
-                    // questions: this.props.location.state.questions.data, // question mai sare questions ka data daal diya 
-                    // time_over: this.props.location.state.questions.time_over, // time over 
-                    minutes: minutes, // line number 108
-                    seconds: seconds, // line number 109
+                    minutes: minutes,
+                    seconds: seconds,
                 });
                 this.countDown();
                 console.log('Timmer')
@@ -128,9 +84,10 @@ class StudentObjectiveTest extends Component {
             this.props.history.push('/');
         }
         else {
-            var remaining_time = 3600
-            // console.log(this.props);
-            // let time_over = this.props.location.state.questions.time_over;
+            var remaining_time = this.props.location.state.questions.remaining_time
+            console.log(this.props);
+            console.log(this.props.location.state.questions.remaining_time)
+            // let time_over = this.props.location.state.qustions.time_over;
             // console.log(time_over)
             // let time_over_hours = Number(time_over.split(':')[0]);// hour
             // let time_over_minutes = Number(time_over.split(':')[1]);//minutes 
@@ -369,6 +326,7 @@ class StudentObjectiveTest extends Component {
             fetch(Config.SERVER_URL + "student/update-objective-exam-test-question/" + this.state.questions[index].id + "/" + this.state.questions[index].ans_given + "/", requestOptions)
                 .then(response => response.json())
                 .then(json => {
+                    console.log(json)
                     if (json.Error) {
                         alert('EXAM TIME OVER')
                         this.props.history.push({
@@ -494,6 +452,7 @@ class StudentObjectiveTest extends Component {
             fetch(Config.SERVER_URL + "student/update-objective-exam-test-question/" + this.state.questions[index].id + "/" + this.state.questions[index].ans_given + "/", requestOptions)
                 .then(response => response.json())
                 .then(json => {
+                    console.log(json.data)
                     if (json.Error) {
                         alert('EXAM TIME OVER')
                         this.props.history.push({
@@ -520,6 +479,7 @@ class StudentObjectiveTest extends Component {
             fetch(Config.SERVER_URL + "student/update-objective-exam-test-question/" + this.state.questions[index - 1].id + "/" + this.state.questions[index - 1].ans_given + "/", requestOptions)
                 .then(response => response.json())
                 .then(json => {
+                    console.log(json)
                     if (json.Error) {
                         alert('EXAM TIME OVER')
                         this.props.history.push({
