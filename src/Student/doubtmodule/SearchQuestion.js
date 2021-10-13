@@ -145,7 +145,7 @@ const ListofQuestions_Obj = () => {
     }
 
     return (
-      <div>
+      <div style={{fontFamily: "Montserrat", backgroundColor: "#fbfbfb"}}>
         <Studentnav />
         <div className="modal fade m-4" id="videoplayer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
@@ -194,18 +194,10 @@ const ListofQuestions_Obj = () => {
             <form className="form justify-content-center">
               <div className="row d-flex m-4">
                 <div className="d-flex col-10 col-md-10 justify-content-center m-4">
-                  <input className="form-control justify-content-center" type="search" placeholder="Enter Question Id" value={ques_id} onChange={(e) => setQues(e.target.value)} style={{
-                      backgroundColor: "#272C49",
-                      color: "#ffffff",
-                      borderRadius: "1.4em 1.4em",
-                    }} />
+                  <input className="form-control justify-content-center" type="search" placeholder="Enter Question Id" value={ques_id} onChange={(e) => setQues(e.target.value)} style={{backgroundColor: "#272C49", color: "#ffffff", borderRadius: "1.4em 1.4em" }} />
                 </div>
                 <div className="d-flex col-md-2 col-2 text-center justify-content-center m-4">
-                  <button className="btn" type="button" onClick={SearchQuestion} style={{
-                      backgroundColor: "#EB7926",
-                      color: "#ffffff",
-                      borderRadius: "1.4em 1.4em",
-                    }}>
+                  <button className="btn" type="button" onClick={SearchQuestion} style={{ backgroundColor: "#EB7926", color: "#ffffff", borderRadius: "1.4em 1.4em"}}>
                         <i className="fas fa-search justify-content-center"></i>
                   </button>
                 </div>
@@ -232,7 +224,7 @@ const ListofQuestions_Obj = () => {
                                     <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#EB7926", margin: "0.8em" }}>
                                         <label>A {parse(question_byId.option1_text)} </label>
                                     </div>
-                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#dedede", margin: "0.8em" }}>
+                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#ffffff", margin: "0.8em", border: "1px solid black" }}>
                                         <label>A {parse(question_byId.option1_text)} </label>
                                     </div>}
                             </div>
@@ -242,7 +234,7 @@ const ListofQuestions_Obj = () => {
                                         <label>B</label>
                                         {parse(question_byId.option2_text)}
                                     </div>
-                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#dedede", margin: "0.8em" }}>
+                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#ffffff", margin: "0.8em", border: "1px solid black" }}>
                                         <label>B</label>
                                         {parse(question_byId.option2_text)}
                                     </div>}
@@ -255,7 +247,7 @@ const ListofQuestions_Obj = () => {
                                         <label>C</label>
                                         {parse(question_byId.option3_text)}
                                     </div>
-                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#dedede", margin: "0.8em" }}>
+                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#ffffff", margin: "0.8em", border: "1px solid black" }}>
                                         <label>C</label>
                                         {parse(question_byId.option3_text)}
                                     </div>}
@@ -266,54 +258,54 @@ const ListofQuestions_Obj = () => {
                                         <label>D</label>
                                         {parse(question_byId.option4_text)}
                                     </div>
-                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#dedede", margin: "0.8em" }}>
+                                    : <div style={{padding: '0.8em', borderRadius: '2em', backgroundColor: "#ffffff", margin: "0.8em", border: "1px solid black"}}>
                                         <label>D</label>
                                         {parse(question_byId.option4_text)}
                                     </div>}
                             </div>
                         </div><br />
-                        <label>Solution Text:</label>
+                        <label>Solution :</label>
                         <div>{parse(question_byId.solution_text)}</div><br />
                         <label>Difficulty : {question_byId.difficulty_level}</label><br />
                         <label>Level : {question_byId.level_i}</label><br />
                         <label>Created on : {dateFormat(question_byId.created_on)}</label><br /><br />
                         <label>Chapter Name : {question_byId.chapter_name}</label><br /><br />
-                        <button className='btn btn-primary' data-toggle="modal" data-target="#videoplayer" onClick={() => viewRecording(question_byId.solution_video)}>View Recording</button>
+                        <button className='btn' data-toggle="modal" data-target="#videoplayer" onClick={() => viewRecording(question_byId.solution_video)} style={{backgroundColor: "#272C49", color: "#ffffff"}}>View Recording</button>
                     </div>
                     <br />
                     </div>
                 </div>
               </div>
           ) : (
-            <div className="container text-left">
+            <div>
             {Question.length === 0 ? 'No Questions Found' : <PDFExport paperSize="A3" margin='0.5cm' ref={pdfExportComponent} fileName='Question Details'>
                 {Question.map((item) => (
                     <div className='pdf_con'>
                         <br />
-                        <div>
-                            <div><label>Question ID:</label>
-                                <label>{item.id}</label></div>
+                        <div style={{ width: '100%', height: 'auto', border: '1px solid black', padding: '10px' }}>
+                            <div style={{ fontSize: '20px' }}><label>Question ID:</label>
+                                <label style={{ margin: '10px', color: "orange" }}>{item.id}</label></div>
                             <div><label>Question Text</label>
                                 <label>{parse(item.question_text)}</label></div>
                             <div className='row'>
                                 <div className='col-lg-6'>
                                     {item.correct_option === '1' ?
-                                        <div>
+                                        <div style={{ border: '3px solid green', padding: '5px' }}>
                                             <label>Option 1</label>
                                             {parse(item.option1_text)}
                                         </div>
-                                        : <div>
+                                        : <div style={{ border: '3px solid red', padding: '5px' }}>
                                             <label>Option 1</label>
                                             {parse(item.option1_text)}
                                         </div>}
                                 </div>
                                 <div className='col-lg-6'>
                                     {item.correct_option === '2' ?
-                                        <div>
+                                        <div style={{ border: '3px solid green', padding: '5px' }}>
                                             <label>Option 2</label>
                                             {parse(item.option2_text)}
                                         </div>
-                                        : <div>
+                                        : <div style={{ border: '3px solid red', padding: '5px' }}>
                                             <label>Option 2</label>
                                             {parse(item.option2_text)}
                                         </div>}
@@ -322,22 +314,22 @@ const ListofQuestions_Obj = () => {
                             <div className='row'>
                                 <div className='col-lg-6'>
                                     {item.correct_option === '3' ?
-                                        <div>
+                                        <div style={{ border: '3px solid green', padding: '5px' }}>
                                             <label>Option 3</label>
                                             {parse(item.option3_text)}
                                         </div>
-                                        : <div>
+                                        : <div style={{ border: '3px solid red', padding: '5px' }}>
                                             <label>Option 3</label>
                                             {parse(item.option3_text)}
                                         </div>}
                                 </div>
                                 <div className='col-lg-6'>
                                     {item.correct_option === '4' ?
-                                        <div>
+                                        <div style={{ border: '3px solid green', padding: '5px' }}>
                                             <label>Option 4</label>
                                             {parse(item.option4_text)}
                                         </div>
-                                        : <div>
+                                        : <div style={{ border: '3px solid red', padding: '5px' }}>
                                             <label>Option 1</label>
                                             {parse(item.option4_text)}
                                         </div>}
