@@ -152,6 +152,7 @@ class Login extends Component {
         </header>
 
         <main className="login-main-container">
+          <div> {/* just for top margin */}</div>
           <form onSubmit={this.onSubmithandler}>
             <div className="zinLogo">
               <img src={Logo} alt="logo" />

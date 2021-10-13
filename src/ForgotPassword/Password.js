@@ -150,6 +150,7 @@ class Login extends Component {
                 </header>
 
                 <main className="login-main-container">
+                    <div> {/* just for top margin */}</div>
                     <form onSubmit={this.onSubmithandler}>
                         <div className="zinLogo">
                             <img src={Logo} alt="logo" />
@@ -186,8 +187,8 @@ class Login extends Component {
                         </div>
 
                         <div className="login-btn-03">
-                            <button type="submit" style={{marginRight:"10px"}}>Submit</button>
-                            <button type = "submit" onClick={this.onReSubmithandler}>Resend OTP</button>
+                            <button type="submit" style={{ marginRight: "10px" }}>Submit</button>
+                            <button type="submit" onClick={this.onReSubmithandler}>Resend OTP</button>
                         </div>
 
                         <div className="back-button" onClick={this.goBack} style={{ display: 'flex', alignItems: "center" }}>
