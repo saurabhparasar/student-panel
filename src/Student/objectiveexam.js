@@ -60,22 +60,21 @@ class Objectiveexam extends Component {
       .then(response => response.json())
       .then(json => {
         console.log(json);
-        let time_over = json.time_over;
-        let time_over_hours = Number(time_over.split(':')[0]);
-        let time_over_minutes = Number(time_over.split(':')[1]);
-        let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));
-        let total_time = this.props.location.state.examdetails.exam_duration;
-        let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
-        let c_seconds = this.convertToSeconds(0, total_time, 0);
-        console.log(latest_seconds);
-        console.log(c_seconds);
-        let actual_time = c_seconds - latest_seconds;
+        let remaining_time = json.remaining_time;
+        // let time_over_hours = Number(time_over.split(':')[0]);
+        // let time_over_minutes = Number(time_over.split(':')[1]);
+        // let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));
+        // let total_time = this.props.location.state.examdetails.exam_duration;
+        // let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
+        // let c_seconds = this.convertToSeconds(0, total_time, 0);
+        // console.log(latest_seconds);
+        // console.log(c_seconds);
+        let actual_time = remaining_time
         var minutes = Math.floor(actual_time / 60);
         var seconds = actual_time - minutes * 60;
         this.setState({
           minutes: minutes,
           seconds: seconds,
-          time_over: time_over,
         });
         this.countDown();
         console.log('Timmer')
@@ -96,17 +95,16 @@ class Objectiveexam extends Component {
     }
     else {
       console.log(this.props);
-      let time_over = this.props.location.state.questions.time_over;
-      console.log(time_over)
-      let time_over_hours = Number(time_over.split(':')[0]);
-      let time_over_minutes = Number(time_over.split(':')[1]);
-      let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));
-      let total_time = this.props.location.state.examdetails.exam_duration;
-      let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
-      let c_seconds = this.convertToSeconds(0, total_time, 0);
-      console.log(latest_seconds);
-      console.log(c_seconds);
-      let actual_time = c_seconds - latest_seconds;
+      let remaining_time = this.props.location.state.questions.remaining_time;
+      // let time_over_hours = Number(time_over.split(':')[0]);
+      // let time_over_minutes = Number(time_over.split(':')[1]);
+      // let time_over_seconds = Math.floor(Number(time_over.split(':')[2]));
+      // let total_time = this.props.location.state.examdetails.exam_duration;
+      // let latest_seconds = this.convertToSeconds(time_over_hours, time_over_minutes, time_over_seconds);
+      // let c_seconds = this.convertToSeconds(0, total_time, 0);
+      // console.log(latest_seconds);
+      // console.log(c_seconds);
+      let actual_time = remaining_time;
       var minutes = Math.floor(actual_time / 60);
       var seconds = actual_time - minutes * 60;
       var unansweredquestions = 0;
@@ -423,7 +421,32 @@ class Objectiveexam extends Component {
     }
   }
   //end
-
+  onClearSelection = () => {
+    var index = this.state.selectedindex;
+    var reviewunanswered = this.state.reviewunanswered;
+    var reviewanswered = this.state.reviewanswered;
+    var answeredquestions = this.state.answeredquestions;
+    var unansweredquestions = this.state.unansweredquestions;
+      if (this.state.questions[index].ans_given != 0) {
+          if (this.state.reviewarray.includes(index)){
+              reviewanswered = reviewanswered-1;
+              reviewunanswered = reviewunanswered +1;
+          }
+          answeredquestions = answeredquestions-1;
+          unansweredquestions = unansweredquestions+1;
+        }
+        var options = this.state.selectedquestion;
+        options.ans_given = 0;
+    this.setState({
+      selectedquestion: options,
+    //   reviewarray: reviewarray,
+      reviewanswered: reviewanswered,
+      reviewunanswered: reviewunanswered,
+      answeredquestions:answeredquestions,
+      unansweredquestions:unansweredquestions,
+    });
+    
+  };
   onQuestionClick = (item) => {
     document.getElementsByClassName('close')[0].click();
     var visitedunansweredarray = this.state.visitedunansweredarray;
@@ -669,7 +692,49 @@ class Objectiveexam extends Component {
 
               </div>
               <div id="gap" style={{ marginTop: '20px' }}>
-                {this.state.selectedindex == 0 ? (<div><center><button className="btn" style={{ background: '#D9E2FF', border: 'none', borderRadius: '29px', color: '#383E88', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} data-toggle="modal" data-target="#reportquestion">REPORT QUESTION</button><button className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} onClick={this.onreviewClick}>HOLD FOR REVIEW</button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat' }} id="next" onClick={this.onnextClick}>SAVE & NEXT</button></center></div>) : this.state.selectedindex < this.state.questions.length - 1 ? (<div> <center><button className="btn" style={{ background: '#D9E2FF', border: 'none', borderRadius: '29px', color: '#383E88', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} data-toggle="modal" data-target="#reportquestion">REPORT QUESTION</button><button className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} onClick={this.onreviewClick}>HOLD FOR REVIEW</button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} id="prev" onClick={this.onpreviousClick}>PREVIOUS</button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat' }} id="next" onClick={this.onnextClick}>SAVE & NEXT</button></center></div>) : (<div><center> <button className="btn" style={{ background: '#D9E2FF', border: 'none', borderRadius: '29px', color: '#383E88', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} data-toggle="modal" data-target="#reportquestion">REPORT QUESTION</button><button className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} onClick={this.onreviewClick}>HOLD FOR REVIEW</button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} id="prev" onClick={this.onpreviousClick}>PREVIOUS</button> <button className="btn" style={{ background: '#EB7926', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat' }} id="submit" onClick={this.submitExam}>SAVE & SUBMIT</button></center> </div>)}
+                {this.state.selectedindex == 0 ? (<div><center><button className="btn" style={{ background: '#D9E2FF', border: 'none', borderRadius: '29px', color: '#383E88', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} data-toggle="modal" data-target="#reportquestion">REPORT QUESTION</button><button className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} onClick={this.onreviewClick}>HOLD FOR REVIEW</button><button
+                        className="btn"
+                        style={{
+                          background: "white",
+                          border: "1px solid #383E88",
+                          borderRadius: "29px",
+                          color: "#1C3687",
+                          fontWeight: "bold",
+                          fontFamily: "Montserrat",
+                        }}
+                        id="next"
+                        onClick={this.onClearSelection}
+                      >
+                        CLEAR SELECTION
+                      </button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat' }} id="next" onClick={this.onnextClick}>SAVE & NEXT</button></center></div>) : this.state.selectedindex < this.state.questions.length - 1 ? (<div> <center><button className="btn" style={{ background: '#D9E2FF', border: 'none', borderRadius: '29px', color: '#383E88', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} data-toggle="modal" data-target="#reportquestion">REPORT QUESTION</button><button className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} onClick={this.onreviewClick}>HOLD FOR REVIEW</button><button
+                        className="btn"
+                        style={{
+                          background: "white",
+                          border: "1px solid #383E88",
+                          borderRadius: "29px",
+                          color: "#1C3687",
+                          fontWeight: "bold",
+                          fontFamily: "Montserrat",
+                        }}
+                        id="next"
+                        onClick={this.onClearSelection}
+                      >
+                        CLEAR SELECTION
+                      </button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} id="prev" onClick={this.onpreviousClick}>PREVIOUS</button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat' }} id="next" onClick={this.onnextClick}>SAVE & NEXT</button></center></div>) : (<div><center> <button className="btn" style={{ background: '#D9E2FF', border: 'none', borderRadius: '29px', color: '#383E88', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} data-toggle="modal" data-target="#reportquestion">REPORT QUESTION</button><button className="btn" style={{ background: '#1C3687', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} onClick={this.onreviewClick}>HOLD FOR REVIEW</button><button
+                        className="btn"
+                        style={{
+                          background: "white",
+                          border: "1px solid #383E88",
+                          borderRadius: "29px",
+                          color: "#1C3687",
+                          fontWeight: "bold",
+                          fontFamily: "Montserrat",
+                        }}
+                        id="next"
+                        onClick={this.onClearSelection}
+                      >
+                        CLEAR SELECTION
+                      </button><button className="btn" style={{ background: 'white', border: '1px solid #383E88', borderRadius: '29px', color: '#1C3687', fontWeight: 'bold', fontFamily: 'Montserrat', marginRight: '10px' }} id="prev" onClick={this.onpreviousClick}>PREVIOUS</button> <button className="btn" style={{ background: '#EB7926', border: 'none', borderRadius: '29px', color: 'white', fontWeight: 'bold', fontFamily: 'Montserrat' }} id="submit" onClick={this.submitExam}>SAVE & SUBMIT</button></center> </div>)}
                 <div id="reportquestion" className="modal fade" role="dialog">
                   <div class="modal-dialog" id="modalDialog">
                     <div class="modal-content">

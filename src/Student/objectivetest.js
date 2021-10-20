@@ -89,12 +89,13 @@ const Objectivetest = (props) => {
       props.history.push({
         pathname: "/student/objectiveexaminstruction",
         state: {
+          studentId: student_id,
           examdetails: item.exam_details,
           exam_type: props.location.state.exam_type
         },
       });
     } else {
-      // console.log("hello");
+      console.log("hello");
       alert("You are not using Chrome Or Safari browser.Please use chrome browser in android and safari in chrome")
     }
   }
@@ -191,6 +192,7 @@ const Objectivetest = (props) => {
           obj['end_date'] = item.exam_assoc.exam_end_date;
           obj['exam_details'] = item;
           obj['attending_status'] = "";
+          obj['exam_given'] = item.exam_assoc.exam_given
           obj['is_expired'] = item.exam_assoc.is_expired
           all.push(obj);
           pending.push(obj);

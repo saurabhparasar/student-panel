@@ -18,10 +18,15 @@ class ObjectiveExamInstruction extends Component {
       test: '',
       isloading: false,
       isRead: false,
-      exam_time: ''
+      exam_time: '',
+      remaining_time: 0,
+      min: 0,
+      sec: 0
     }
   }
   componentDidMount = () => {
+    console.log(this.props.location.state.studentId)
+    var a = 0
     var requestOptions = {
       redirect: 'follow',
       headers: {
@@ -37,8 +42,14 @@ class ObjectiveExamInstruction extends Component {
     axios.post(Config.SERVER_URL + `student/instruction-objective-exam`, formdata).then((data) => {
       console.log(data.data)
       this.setState({
-        exam_time: data.data.end_time
+        exam_time: data.data.end_time,
+        remaining_time: data.data.remaining_time,
       })
+      if (data.data.remaining_time > 0) {
+        this.a = setInterval(() => {
+          this.Coundown()
+        }, 1000);
+      }
     }).catch((err) => {
       console.log(err)
     })
@@ -51,11 +62,45 @@ class ObjectiveExamInstruction extends Component {
       this.props.history.push('/');
     }
   }
+  alternateClick = () => {
+    var formdata = new FormData();
+    formdata.append("exam", this.state.test.id);
+    formdata.append("student", this.state.student);
+    var requestOptions = {
+      method: 'POST',
 
+      body: formdata,
+      redirect: 'follow',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Token ' + this.state.token,
+        // 'access-control-allow-origin':'*',
+        // "Access-Control-Allow-Headers":'Accept'  ,
+        // 'accept':'application/json'
+      },
+    };
+    fetch(Config.SERVER_URL + "student/start-objective-exam/", requestOptions)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          isloading: false
+        })
+        console.log(json);
+        setTimeout(() => {
+          window.open(`https://admin.zinedu.com/WEBStudent/ListOfQuestionForStudent?ExamScheduleId=${this.state.test.id}&StudentId=${this.props.location.state.studentId}`, '_self')
+        }, 1000);
+      })
+      .catch(error => {
+        console.log('error', error);
+      })
+  }
   onInstructionRead = (event) => {
     this.setState({
       isRead: event.target.checked,
     });
+  }
+  componentWillUnmount() {
+    clearInterval(this.a)
   }
   onStartclick = () => {
     this.setState({
@@ -87,7 +132,6 @@ class ObjectiveExamInstruction extends Component {
           console.log(json);
           if (typeof (json.Error) === 'undefined') {
             //  console.log(json);
-
             this.props.history.push({
               pathname: '/student/StudentObjectiveTest',
               state: { questions: json, examdetails: this.state.test },
@@ -137,6 +181,23 @@ class ObjectiveExamInstruction extends Component {
         })
     }
   }
+  Coundown = () => {
+    var remaining_time = this.state.remaining_time
+    var minutes = Math.floor(remaining_time / 60);
+    var seconds = remaining_time - minutes * 60;
+    console.log(remaining_time--)
+    if (remaining_time < 0) {
+      this.props.history.push({
+        pathname: '/student/objectivetest',
+        state: { exam_type: 1 },
+      })
+    }
+    this.setState({
+      remaining_time: remaining_time--,
+      min: minutes,
+      sec: seconds
+    })
+  }
   render() {
     var instructions;
     if (this.state.test != '') {
@@ -167,7 +228,14 @@ class ObjectiveExamInstruction extends Component {
                 <center>
                   <button className='btn btn-primary' style={{ border: 'none', background: '#1C3687', marginTop: '30px', borderRadius: '29px', fontSize: '16px', width: '200px', marginRight: '10px' }} onClick={this.onStartclick}>CONTINUE EXAM</button>
                   <button className='btn btn-primary' style={{ border: 'none', background: '#EB7926', marginTop: '30px', borderRadius: '29px', fontSize: '16px', width: '200px' }} onClick={() => { this.props.history.push('/') }}>TAKE LATER</button><br /><br />
-                  <h2>If you click continue exam now your exam will end : {dateFormat(this.state.exam_time, "shortTime")} </h2>
+                  <div>{this.props.location.state.exam_type === 1 ? <div>{this.state.remaining_time === 0 ? <div>
+                    <h3>If you click continue exam now your exam will end : {dateFormat(this.state.exam_time, "shortTime")} </h3>
+                    <h3>If your are facing some problem during continue exam use alternate link below</h3>
+                    <button className='btn btn-primary' style={{ border: 'none', background: '#1C3687', marginTop: '30px', borderRadius: '29px', fontSize: '16px', width: '200px', marginRight: '10px', width: '100%' }} onClick={this.alternateClick}>CONTINUE EXAM (ALTERNATE LINK)</button>
+                  </div> : <div><h3>Your exam is already running and remaing time is {this.state.min} min : {this.state.sec} sec</h3><br /><br />
+                    <h3>If your are facing some problem during continue exam use alternate link below</h3>
+                    <button className='btn btn-primary' style={{ border: 'none', background: '#1C3687', marginTop: '30px', borderRadius: '29px', fontSize: '16px', width: '200px', marginRight: '10px', width: '100%' }} onClick={this.alternateClick}>CONTINUE EXAM (ALTERNATE LINK)</button>
+                  </div>}</div> : ''}</div>
                 </center>
               </div>
             </div>
